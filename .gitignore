@@ -1,0 +1,36 @@
+# Python
+venv/
+venv_data/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# DATA FILES - EXCLUDE LARGE DATASETS!
+*.parquet
+*.csv
+*.xlsx
+*.json
+*.zip
+*.tar.gz
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Environment files
+.env.local
+.env.development
