@@ -1,0 +1,10 @@
+topic_id,topic_name,grade_level,lesson_order,estimated_duration_minutes,difficulty,source_evidence
+T001,Introduction to HTML and Web Basics,7,1,20,1,"UK KS3, RPF, Mozilla"
+T002,HTML Tags and Document Structure,7,2,18,1,"UK KS3, RPF, Mozilla"
+T003,Headings and Paragraphs,7,3,15,1,"UK KS3, RPF, Mozilla"
+T004,Hyperlinks,8,4,20,2,"UK KS3, RPF, Mozilla"
+T005,Images and Multimedia,8,5,18,2,"UK KS3, RPF, Mozilla"
+T006,Lists and Tables,8,6,20,2,"UK KS3, RPF, Mozilla"
+T007,Forms and User Input,9,7,20,3,"UK KS3, RPF, Mozilla"
+T008,Semantic HTML and Accessibility,9,8,15,3,"UK KS3, RPF, Mozilla"
+T009,Mini Website Development Project,9,9,25,3,"UK KS3, RPF, Mozilla"

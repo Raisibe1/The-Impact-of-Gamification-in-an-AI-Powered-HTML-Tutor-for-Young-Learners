@@ -12,11 +12,14 @@ __pycache__/
 
 # DATA FILES - EXCLUDE LARGE DATASETS!
 *.parquet
-*.csv
 *.xlsx
 *.json
 *.zip
 *.tar.gz
+
+# But ALLOW reference CSV files in docs/ and data/reference/
+!docs/*.csv
+!data/reference/*.csv
 
 # OS files
 .DS_Store
