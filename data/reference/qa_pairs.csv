@@ -1,0 +1,61 @@
+question_id,topic_id,question_text,option_a,option_b,option_c,correct_answer,hint_text,difficulty
+Q001,T001,What does HTML stand for?,HyperText Markup Language,HyperText Markup Language,HyperText Markup Language,A,Think about the three words that make up HTML,1
+Q002,T001,What is the main job of HTML?,To add colours to webpages,To build the structure of a webpage,To create animations,B,What does HTML do for a webpage?,1
+Q003,T001,What is the very first tag you type in a new HTML file?,<html>,<!DOCTYPE html>,<body>,B,This goes at the very top of the file,1
+Q004,T001,What happens when you open an HTML file in a web browser?,The browser shows you the webpage,It edits the code for you,It saves the file automatically,A,What does the browser do with the code?,1
+Q005,T001,What is an HTML tag?,A special word in angle brackets like <p>,A programming language,A type of software,A,Look at the symbols used - what goes inside them?,1
+Q006,T001,Which tag holds everything you can SEE on a webpage?,<body>,<head>,<footer>,A,What part of the page can you actually see?,1
+Q007,T001,What two main parts does every HTML page have?,A head and a body,A header and a footer,A title and a footer,A,Think about the two sections every HTML page has,1
+Q008,T002,Which tag makes a new paragraph?,<p>,<h1>,<div>,A,This tag is one letter and starts with p,1
+Q009,T002,How many heading sizes can you use in HTML?,6,6,4,A,Count from h1 to h6,1
+Q010,T002,Which heading is the BIGGEST on a webpage?,<h1>,<h2>,<h3>,A,Which number gives the biggest heading?,1
+Q011,T002,Which heading is the SMALLEST on a webpage?,<h6>,<h5>,<h4>,A,Which number gives the smallest heading?,1
+Q012,T002,What kind of information goes inside the <head> tag?,Information about the page (like the title),The text you see on the page,The page title and settings,A,This is stuff the user doesn't see,1
+Q013,T002,Which tag creates a new line without starting a new paragraph?,<br>,<p>,<hr>,A,"This tag starts with br and is short for ""break""",1
+Q014,T002,What is special about the <br> tag?,It does not need a closing tag,It is empty and has no content,It has no opening tag,A,Does it have a closing tag?,1
+Q015,T003,Which heading tag is used for the MAIN title of a page?,<h1>,<h6>,<h2>,A,Which heading is the most important?,1
+Q016,T003,What does the <p> tag create on your webpage?,A block of text,A heading,A new line,A,What does the p stand for?,1
+Q017,T003,"If you forget to close a <p> tag, what usually happens?",The browser still shows the text normally,The page will show an error,The browser will not show anything,A,Browsers are forgiving with small mistakes,1
+Q018,T003,Which tag would you use for a section title that is smaller than <h1>?,<h2>,<h3>,<p>,A,Which heading is one level below h1?,1
+Q019,T003,How is <h1> different from <h2>?,<h1> is bigger,<h1> is smaller,They are exactly the same,A,Think about the size difference,1
+Q020,T003,Can you put a heading tag inside a paragraph tag?,"No, headings must be on their own line","Yes, you can put them anywhere",Only in special cases,A,Headings are block elements - they take their own line,1
+Q021,T004,What attribute do you use to add a web address to a link?,href,src,link,A,This attribute starts with h,1
+Q022,T004,Which HTML tag creates a clickable link?,<a>,<link>,<hyperlink>,A,This tag is a single letter,1
+Q023,T004,"What does ""href"" mean in a link?",Hypertext Reference,Hypertext Help,Hypertext Link,A,"The ""ref"" part means ""reference""",1
+Q024,T004,How do you make a link open in a new browser tab?,"target=""_blank""",new_window,open_new,A,"Look for the attribute that starts with ""target""",1
+Q025,T004,Which is the correct way to write a link to Google?,"<a href=""google.com"">Google</a>","<a src=""google.com"">Google</a>","<a href=""google.com"">Google</a>",A,You need the href attribute in the opening tag,1
+Q026,T004,What happens when someone clicks on a link?,It takes them to another webpage,It checks for spelling mistakes,It adds a picture to the page,A,What happens to the user when they click?,1
+Q027,T004,Can you make an image clickable like a link?,"Yes, by putting <img> inside <a>","No, only text can be links","Yes, by putting <a> inside <img>",A,You can wrap an image with a link tag,2
+Q028,T005,Which tag adds a picture to your webpage?,<img>,<image>,<picture>,A,"This tag is short for ""image""",1
+Q029,T005,What attribute tells the browser where the image is?,src,alt,href,A,"This stands for ""source""",1
+Q030,T005,"What does the ""alt"" attribute do for an image?",Describes the image for people who cannot see it,It makes the image bigger,It creates a caption under the image,A,"The ""alt"" is like a description",1
+Q031,T005,Why should you always add alt text to images?,It helps people who use screen readers,It makes the page load faster,It changes the image colour,B,Think about people who can't see the image,2
+Q032,T005,What types of image files work on webpages?,"Many types work (jpg, png, gif)",Only jpg files,Only gif files,A,Most common image formats work,1
+Q033,T005,What appears if your image file is missing or broken?,A broken image icon,The page will not load,A broken image icon,A,What does the browser show as a placeholder?,1
+Q034,T005,How can you change the size of an image on your page?,Use width and height attributes,Use the size attribute,Use the image-size attribute,A,You can use attributes for width and height,2
+Q035,T006,Which tag creates a bulleted (unordered) list?,<ul>,<ol>,<list>,A,"UL stands for ""unordered list""",1
+Q036,T006,Which tag creates a numbered (ordered) list?,<ol>,<ul>,<item>,B,"OL stands for ""ordered list""",1
+Q037,T006,What is the main difference between <ul> and <ol>?,"<ul> has bullets, <ol> has numbers",Both use bullet points,"<ul> has numbers, <ol> has bullets",A,Think about bullets vs numbers,1
+Q038,T006,Which tag is used for each item in a list?,<li>,<list>,<point>,A,"LI stands for ""list item""",1
+Q039,T006,Which tag starts a new row in a table?,<tr>,<row>,<table>,A,"TR stands for ""table row""",1
+Q040,T006,Which tag creates the heading cells in a table?,<th>,<tr>,<thead>,A,"TH stands for ""table header""",1
+Q041,T006,Which tag creates the data cells in a table?,<td>,<data>,<tc>,A,"TD stands for ""table data""",1
+Q042,T007,Which tag creates a box where users can type information?,<input>,<form>,<text>,A,This tag collects user information,1
+Q043,T007,What attribute gives the input field a name?,name,id,placeholder,A,This is how you identify the field,1
+Q044,T007,"What does the ""type"" attribute do for an input field?",It decides what kind of input box it is,It makes the input bigger,It adds a label to the input,A,Different types show different input boxes,1
+Q045,T007,What is the main purpose of a form on a website?,To get information from users,To change the page colour,To create animations,A,Forms send information somewhere,1
+Q046,T007,Which tag creates a button that submits the form?,"<input type=""submit"">",<submit>,"<button type=""submit"">",A,This tag creates the clickable button,1
+Q047,T007,"What is the difference between type=""text"" and type=""password""?","text shows letters, password hides them with dots","text is for passwords, password is for text","text is for passwords, password is for text",A,Think about what each one shows on screen,1
+Q048,T007,How do you create a checkbox in a form?,"Use type=""checkbox""","Use type=""check""","Use type=""box""",A,This is a common input type for choices,2
+Q049,T008,Why do we use semantic HTML tags?,To give more meaning to the content,To make pages load faster,To make pages more colourful,A,"It's about meaning, not just appearance",2
+Q050,T008,Which tag is used for the top part of a webpage or section?,<header>,<section>,<header>,A,This goes at the top of a section,1
+Q051,T008,Which tag contains the navigation menu links?,<nav>,<menu>,<navigation>,A,This has navigation links,1
+Q052,T008,Which tag holds the main content of your webpage?,<main>,<content>,<section>,A,This has the main content,1
+Q053,T008,Which tag is used for the bottom part of a webpage?,<footer>,<bottom>,<lower>,A,This goes at the bottom,1
+Q054,T008,Why are semantic tags helpful for people using screen readers?,It helps them understand the page better,It makes the text bigger,It makes pages look more modern,A,Screen readers read pages aloud,2
+Q055,T009,What should you do FIRST when building a website?,Plan what you want on your webpage,Start typing code right away,Find pictures for the page,A,Think about what you need before starting,1
+Q056,T009,What information usually goes in the footer of a webpage?,Copyright info and links,Only social media links,The page title,A,This goes at the very bottom,1
+Q057,T009,Why is it important to test your webpage?,To find and fix problems,To make the page look pretty,To make it more interesting,A,Testing helps catch errors,2
+Q058,T009,"Who is a ""visitor"" to your website?",Someone who looks at your webpage,Someone who builds websites,Someone who clicks on links,A,This is the person using your site,1
+Q059,T009,"What does ""responsive design"" mean for a website?","It works well on computers, tablets, and phones",It only works on desktop computers,It only works on mobile phones,A,Think about different devices people use,2
+Q060,T009,Why is it helpful to plan your webpage before coding?,To stay organized and not forget things,To make coding more complicated,To make sure you have enough time,A,A plan helps you work better,1
