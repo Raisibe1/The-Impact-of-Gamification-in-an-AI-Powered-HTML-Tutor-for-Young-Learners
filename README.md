@@ -22,7 +22,6 @@ This project aims to design, build, and test a low-cost AI-powered study tutor t
 └── docs/ # Documentation (data dictionary, model specs)
 
 ## Data Sources
-- ASSISTments 2009-2010 Dataset
 - EdNet Dataset
 (## The raw data is **NOT** stored on GitHub due to file size limits.
 
@@ -37,9 +36,30 @@ This project aims to design, build, and test a low-cost AI-powered study tutor t
 1. Download the ZIP file from the link above
 2. Extract the contents to `data/raw/KT3/`
 3. You should see CSV files like `1.csv`, `2.csv`, etc.)
- 
+
+- ASSISTments 2009-2010 Dataset
 - ConvoLearn Dataset
 - StudyChat Dataset
+(## The raw data is **NOT** stored on GitHub due to file size limits.
+
+### Download from Google Drive
+
+[**Download Raw Data Folder**](https://drive.google.com/drive/folders/1m1XdbMPcJKMS7myBaH5byA77xEnmgzMn?usp=sharing)
+
+**Contents:**
+
+| Dataset | Size | Description |
+| :--- | :--- | :--- |
+| ASSISTments | ~20 MB | Classic Knowledge Tracing benchmark |
+| ConvoLearn | ~3 MB | Teacher-student tutoring dialogues |
+| StudyChat | ~1 MB | Student-LLM conversations |
+
+### Setup Instructions
+
+1. Download the folder from Google Drive
+2. Place it inside your project as `data/raw/`
+3. Verify the path: `data/raw/convolearn.csv`, etc.
+4. Run `python scripts/check_data.py` to verify everything is in place)
 
 ## Setup Instructions
 ```bash
