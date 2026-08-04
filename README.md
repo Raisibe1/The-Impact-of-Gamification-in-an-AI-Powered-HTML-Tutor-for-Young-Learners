@@ -24,6 +24,20 @@ This project aims to design, build, and test a low-cost AI-powered study tutor t
 ## Data Sources
 - ASSISTments 2009-2010 Dataset
 - EdNet Dataset
+(## The raw data is **NOT** stored on GitHub due to file size limits.
+
+### EdNet-KT3 Dataset
+
+- **Source:** EdNet (Santa tutoring service, Korea)
+- **Download:** [https://bit.ly/ednet-kt3](https://bit.ly/ednet-kt3)
+- **Size:** 762 MB (compressed) / ~4.3 GB (extracted)
+- **Format:** ZIP file → CSV files (one per student)
+### Setup Instructions
+
+1. Download the ZIP file from the link above
+2. Extract the contents to `data/raw/KT3/`
+3. You should see CSV files like `1.csv`, `2.csv`, etc.)
+ 
 - ConvoLearn Dataset
 - StudyChat Dataset
 
