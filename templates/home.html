@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Dev Quest — Learn to build the web</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='home.css') }}">
+</head>
+<body>
+    <div id="app">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <a class="brand" href="/">
+                <svg class="brand-mark" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="markGrad" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#667eea" />
+                            <stop offset="1" stop-color="#764ba2" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="1" y="1" width="32" height="32" rx="10" stroke="url(#markGrad)" stroke-width="1.4" opacity="0.5" />
+                    <path d="M14 11 L9 17 L14 23" stroke="url(#markGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M20 11 L25 17 L20 23" stroke="url(#markGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="brand-text">
+                    <span class="brand-name">Web Dev Quest</span>
+                    <span class="brand-sub">Design on the Web</span>
+                </span>
+            </a>
+            <button class="login-btn" onclick="window.location.href='/login'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+                <span id="login-label">Log in</span>
+            </button>
+        </header>
+
+        <!-- ===== HERO ===== -->
+        <main class="home-main">
+            <section class="hero">
+                <p class="eyebrow">Interactive curriculum</p>
+
+                <h1 class="hero-title">
+                    Learn to design and build<br />
+                    <span class="title-accent">for the web.</span>
+                </h1>
+
+                <p class="hero-sub">
+                    Structured lessons on design, HTML, CSS and JavaScript —
+                    paired with an AI tutor that answers your questions as you work.
+                </p>
+
+                <!-- AI search -->
+                <form class="ai-search" id="ai-form" autocomplete="off">
+                    <span class="search-icon" aria-hidden="true">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="6.2" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M15.8 15.8 L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                    </span>
+
+                    <input
+                        type="text"
+                        id="ai-input"
+                        placeholder="Ask the AI tutor anything about web design"
+                        aria-label="Ask the AI tutor"
+                    />
+
+                    <button class="search-btn" type="submit" id="ai-submit">Search</button>
+                </form>
+
+                <p class="search-hint">Press <kbd>Ctrl</kbd> <kbd>K</kbd> to focus</p>
+
+                <div id="ai-answer-slot"></div>
+
+                <!-- CTAs -->
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="/register">register</a>
+                    <a class="btn btn-secondary" href="/program">Browse Program</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer>
+            <p>Powered by <a href="https://makecode.com" target="_blank" rel="noopener">Microsoft MakeCode</a></p>
+        </footer>
+    </div>
+
+    <!-- login modal mounts here -->
+    <div id="modal-root"></div>
+
+    <script>
+        /* =========================================================
+           Endpoints — point these at your own backend
+           ========================================================= */
+        const AI_ENDPOINT    = '/api/ai';          // POST { prompt } -> { answer | text | message }
+        const LOGIN_ENDPOINT = '/api/auth/login';  // POST { email, password }
+
+
+
+        /* =========================================================
+           AI SEARCH
+           ========================================================= */
+        const aiForm     = document.getElementById('ai-form');
+        const aiInput    = document.getElementById('ai-input');
+        const aiSubmit   = document.getElementById('ai-submit');
+        const answerSlot = document.getElementById('ai-answer-slot');
+
+        aiForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const prompt = aiInput.value.trim();
+            if (!prompt) return;
+            askAI(prompt);
+        });
+
+    </script>
+</body>
+</html>

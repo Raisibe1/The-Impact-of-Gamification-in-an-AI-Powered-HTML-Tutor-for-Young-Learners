@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Tutor · Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <style>
+        /* ===== LOGIN PAGE STYLES ===== */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 48px 56px;
+            max-width: 480px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-card .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-card .logo h1 {
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .login-card .logo p {
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        .login-card .logo .subtitle-badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            color: #9f7aea;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #cbd5e0;
+            margin-bottom: 6px;
+        }
+
+        .form-group .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .form-group .input-wrapper:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        }
+
+        .form-group .input-wrapper .input-icon {
+            padding: 0 0 0 16px;
+            font-size: 1.1rem;
+            opacity: 0.5;
+            color: #a0aec0;
+        }
+
+        .form-group .input-wrapper input {
+            background: transparent;
+            border: none;
+            padding: 14px 16px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group .input-wrapper input::placeholder {
+            color: #718096;
+        }
+
+        .form-group .input-wrapper .toggle-password {
+            padding: 0 16px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            background: none;
+            border: none;
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+
+        .form-group .input-wrapper .toggle-password:hover {
+            opacity: 0.8;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .form-options .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #a0aec0;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .form-options .remember-me input[type="checkbox"] {
+            accent-color: #667eea;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .form-options .forgot-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-options .forgot-link:hover {
+            color: #9f7aea;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+            color: #718096;
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-login button {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-login button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .social-login button.google:hover {
+            border-color: #ea4335;
+            background: rgba(234, 67, 53, 0.1);
+        }
+
+        .social-login button.github:hover {
+            border-color: #6e7681;
+            background: rgba(110, 118, 129, 0.1);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 24px;
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        .signup-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .signup-link a:hover {
+            color: #9f7aea;
+            text-decoration: underline;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #0b1a2f;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: #8b1a1a;
+        }
+
+        .toast.success {
+            background: #1a5a2a;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 32px 24px;
+            }
+
+            .login-card .logo h1 {
+                font-size: 1.8rem;
+            }
+
+            .social-login {
+                flex-direction: column;
+            }
+
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="logo">
+                    <h1>AI Tutor</h1>
+                    <p>Master web development with AI</p>
+                    <span class="subtitle-badge">Powered by AI</span>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="emailInput">Email Address</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="email" 
+                                id="emailInput" 
+                                placeholder="you@example.com" 
+                                value="demo@student.ai"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordInput">Password</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="password" 
+                                id="passwordInput" 
+                                placeholder="Enter your password" 
+                                value="password123"
+                                required
+                            />
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
+                                <span id="passwordToggleIcon">Show</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe" checked />
+                            Remember me
+                        </label>
+                        <button type="button" class="forgot-link" onclick="handleForgotPassword()">Forgot password?</button>
+                    </div>
+
+                    <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
+                    <button type="submit" onclick="window.location.href='/register'">Register</button>
+                </form>
+
+                <div class="divider">or continue with</div>
+
+                <div class="social-login">
+                    <button class="google" onclick="handleSocialLogin('Google')">
+                        <span style="font-size:1.2rem;">G</span> Google
+                    </button>
+                    <button class="github" onclick="handleSocialLogin('GitHub')">
+                        <span style="font-size:1.2rem;">⌘</span> GitHub
+                    </button>
+                </div>
+
+                <div class="signup-link">
+                    Don't have an account? <a href="#" onclick="handleSignUp()">Sign up free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            let toastTimeout = null;
+
+            /**
+             * Display a toast notification
+             * @param {string} message - Message to display
+             * @param {string} type - 'info', 'success', or 'error'
+             */
+            function showToast(message, type) {
+                type = type || 'info';
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.className = 'toast';
+                
+                if (type === 'error') {
+                    toast.classList.add('error');
+                } else if (type === 'success') {
+                    toast.classList.add('success');
+                }
+                
+                toast.classList.add('show');
+                
+                if (toastTimeout) {
+                    clearTimeout(toastTimeout);
+                }
+                
+                toastTimeout = setTimeout(function() {
+                    toast.classList.remove('show');
+                    toastTimeout = null;
+                }, 3000);
+            }
+
+            /**
+             * Toggle password visibility
+             */
+            window.togglePasswordVisibility = function() {
+                const input = document.getElementById('passwordInput');
+                const toggleIcon = document.getElementById('passwordToggleIcon');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    toggleIcon.textContent = 'Hide';
+                } else {
+                    input.type = 'password';
+                    toggleIcon.textContent = 'Show';
+                }
+            };
+
+            /**
+             * Handle login form submission
+             */
+            window.handleLogin = async function(event) {
+                event.preventDefault();
+                
+                const emailInput = document.getElementById('emailInput');
+                const passwordInput = document.getElementById('passwordInput');
+                const loginBtn = document.getElementById('loginBtn');
+                
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                
+                // Validation
+                if (!email || !password) {
+                    showToast('Please fill in all fields', 'error');
+                    return;
+                }
+
+                if (!email.includes('@') || !email.includes('.')) {
+                    showToast('Please enter a valid email address', 'error');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    showToast('Password must be at least 6 characters', 'error');
+                    return;
+                }
+
+                // Disable button during request
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Signing in...';
+
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password,
+                            remember: document.getElementById('rememberMe').checked
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        showToast('Welcome back, ' + data.user.name + '!', 'success');
+                        
+                        // Redirect to dashboard
+                        setTimeout(function() {
+                            window.location.href = '/dashboard';
+                        }, 800);
+                    } else {
+                        showToast(data.message || 'Login failed', 'error');
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = 'Sign In';
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showToast('Error connecting to server. Please try again.', 'error');
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Sign In';
+                }
+            };
+
+            /**
+             * Handle social login --> google / facebook
+             */
+            /**
+             * Handle forgot password
+             */
+            /**
+             * Handle sign up
+             */
+            window.handleSignUp = function() {
+                showToast('Sign up form coming soon!', 'success');
+            };
+
+            // Enter key support for login form
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('loginForm');
+                const inputs = form.querySelectorAll('input');
+                
+                inputs.forEach(function(input) {
+                    input.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            form.dispatchEvent(new Event('submit'));
+                        }
+                    });
+                });
+
+                // Auto-focus on email input
+                document.getElementById('emailInput').focus();
+            });
+
+        })();
+    </script>
+</body>
+</html>
