@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Tutor - Create account</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='register.css') }}">
+</head>
+<body>
+    <div id="app">
+        <div class="register-container">
+            <div class="register-card">
+                <div class="logo">
+                    <h1>AI Tutor</h1>
+                    <p>Create your free account</p>
+                    <span class="subtitle-badge">Takes less than a minute</span>
+                </div>
+
+                <form id="registerForm" novalidate>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nameInput">Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="nameInput" placeholder="Mpilo" autocomplete="given-name" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="surnameInput">Surname</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="surnameInput" placeholder="Mnisi" autocomplete="family-name" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="schoolInput">School</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="schoolInput" placeholder="Northgate High School" autocomplete="organization" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gradeSelect">Grade</label>
+                            <div class="input-wrapper select-wrapper">
+                                <select id="gradeSelect" required>
+                                    <option value="" selected>Select grade</option>
+                                    <option value="4">Grade 4</option>
+                                    <option value="5">Grade 5</option>
+                                    <option value="6">Grade 6</option>
+                                    <option value="7">Grade 7</option>
+                                    <option value="8">Grade 8</option>
+                                    <option value="9">Grade 9</option>
+                                    <option value="10">Grade 10</option>
+                                    <option value="11">Grade 11</option>
+                                    <option value="12">Grade 12</option>
+                                    <option value="tertiary">Tertiary / College</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ageGroupSelect">Age group <span class="optional">optional</span></label>
+                            <div class="input-wrapper select-wrapper">
+                                <select id="ageGroupSelect">
+                                    <option value="" selected>Select age group</option>
+                                    <option value="under_13">Under 13</option>
+                                    <option value="13_15">13 - 15</option>
+                                    <option value="16_18">16 - 18</option>
+                                    <option value="19_22">19 - 22</option>
+                                    <option value="23_plus">23 and older</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailInput">Email address</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="emailInput" placeholder="you@example.com" autocomplete="email" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordInput">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="passwordInput" placeholder="At least 8 characters" autocomplete="new-password" required />
+                            <button type="button" class="toggle-password" id="passwordToggle" aria-label="Show password">Show</button>
+                        </div>
+                        <div class="strength-track">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <div class="strength-label" id="strengthLabel"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Learning style <span class="optional">optional</span></label>
+                        <div class="pill-group" id="learningStyleGroup">
+                            <input type="radio" name="learning_style" id="styleVisual" value="visual" />
+                            <label for="styleVisual">Visual</label>
+
+                            <input type="radio" name="learning_style" id="styleReading" value="reading" />
+                            <label for="styleReading">Reading</label>
+
+                            <input type="radio" name="learning_style" id="styleHandsOn" value="hands_on" />
+                            <label for="styleHandsOn">Hands-on</label>
+
+                            <input type="radio" name="learning_style" id="styleGroup" value="group" />
+                            <label for="styleGroup">Group work</label>
+
+                            <input type="radio" name="learning_style" id="styleMixed" value="mixed" />
+                            <label for="styleMixed">A mix</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goalSelect">What do you want to achieve? <span class="optional">optional</span></label>
+                        <div class="input-wrapper select-wrapper">
+                            <select id="goalSelect">
+                                <option value="" selected>Select a goal</option>
+                                <option value="build_website">Build my own website</option>
+                                <option value="pass_school">Do better in a school subject</option>
+                                <option value="become_developer">Become a developer</option>
+                                <option value="career_change">Change careers into tech</option>
+                                <option value="curious">Just curious about how the web works</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="terms">
+                        <input type="checkbox" id="termsCheck" required />
+                        <span>
+                            I agree to the <a href="/terms">Terms of Service</a> and
+                            <a href="/privacy">Privacy Policy</a>.
+                        </span>
+                    </label>
+
+                    <button type="submit" id="registerBtn">Create account</button>
+                </form>
+
+                <div class="signin-link">
+                    Already have an account? <a href="/login">Sign in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var toastTimeout = null;
+
+            function showToast(message, type) {
+                type = type || 'info';
+                var toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.className = 'toast';
+
+                if (type === 'error') toast.classList.add('error');
+                if (type === 'success') toast.classList.add('success');
+
+                toast.classList.add('show');
+
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(function () {
+                    toast.classList.remove('show');
+                    toastTimeout = null;
+                }, 3200);
+            }
+
+            /* ---------- element refs ---------- */
+            var form = document.getElementById('registerForm');
+            var nameInput = document.getElementById('nameInput');
+            var surnameInput = document.getElementById('surnameInput');
+            var schoolInput = document.getElementById('schoolInput');
+            var gradeSelect = document.getElementById('gradeSelect');
+            var ageGroupSelect = document.getElementById('ageGroupSelect');
+            var emailInput = document.getElementById('emailInput');
+            var passwordInput = document.getElementById('passwordInput');
+            var goalSelect = document.getElementById('goalSelect');
+            var termsCheck = document.getElementById('termsCheck');
+            var registerBtn = document.getElementById('registerBtn');
+            var passwordToggle = document.getElementById('passwordToggle');
+            var strengthFill = document.getElementById('strengthFill');
+            var strengthLabel = document.getElementById('strengthLabel');
+
+            
+            /* ---------- password visibility ---------- */
+            passwordToggle.addEventListener('click', function () {
+                var isHidden = passwordInput.type === 'password';
+                passwordInput.type = isHidden ? 'text' : 'password';
+                passwordToggle.textContent = isHidden ? 'Hide' : 'Show';
+                passwordToggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            });
+
+            /* ---------- password strength ---------- */
+            function scorePassword(value) {
+                var score = 0;
+                if (value.length >= 8) score++;
+                if (value.length >= 12) score++;
+                if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
+                if (/\d/.test(value)) score++;
+                if (/[^A-Za-z0-9]/.test(value)) score++;
+                return Math.min(score, 4);
+            }
+
+            var strengthText = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+            var strengthColor = ['#fc8181', '#fc8181', '#f6ad55', '#48bb78', '#48bb78'];
+
+            passwordInput.addEventListener('input', function () {
+                var value = passwordInput.value;
+                if (!value) {
+                    strengthFill.style.width = '0';
+                    strengthLabel.textContent = '';
+                    return;
+                }
+
+                var score = scorePassword(value);
+                strengthFill.style.width = (score / 4) * 100 + '%';
+                strengthFill.style.background = strengthColor[score];
+                strengthLabel.textContent = strengthText[score];
+
+                if (value.length < 8) {
+                    strengthLabel.textContent = 'Too short - use at least 8 characters';
+                }
+            });
+
+            /* ---------- select placeholder colour ---------- */
+            [gradeSelect, ageGroupSelect, goalSelect].forEach(function (select) {
+                function sync() {
+                    select.classList.toggle('is-empty', select.value === '');
+                }
+                select.addEventListener('change', sync);
+                sync();
+            });
+
+            /* ---------- helpers ---------- */
+            function markInvalid(input, message) {
+                var wrapper = input.closest('.input-wrapper');
+                if (wrapper) {
+                    wrapper.style.borderColor = '#fc8181';
+                    wrapper.style.boxShadow = '0 0 0 4px rgba(229, 62, 62, 0.12)';
+                    setTimeout(function () {
+                        wrapper.style.borderColor = '';
+                        wrapper.style.boxShadow = '';
+                    }, 2200);
+                }
+                input.focus();
+                showToast(message, 'error');
+            }
+
+            function isValidEmail(value) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+            }
+
+            /* ---------- submit ---------- */
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                const name = nameInput.value.trim();
+                const surname = surnameInput.value.trim();
+                const school = schoolInput.value.trim();
+                const grade = gradeSelect.value;
+                const email = emailInput.value.trim().toLowerCase();
+                const password = passwordInput.value;
+
+                const styleRadio = document.querySelector('input[name="learning_style"]:checked');
+
+                if (!name) return markInvalid(nameInput, 'Please enter your name');
+                if (!surname) return markInvalid(surnameInput, 'Please enter your surname');
+                if (!school) return markInvalid(schoolInput, 'Please enter your school');
+                if (!grade) return markInvalid(gradeSelect, 'Please select your grade');
+                if (!email) return markInvalid(emailInput, 'Please enter your email address');
+                if (!isValidEmail(email)) return markInvalid(emailInput, 'Please enter a valid email address');
+                if (password.length < 8) return markInvalid(passwordInput, 'Password must be at least 8 characters');
+                if (!termsCheck.checked) return showToast('Please accept the terms to continue', 'error');
+
+                const payload = {
+                    name: name,
+                    surname: surname,
+                    school: school,
+                    email: email,
+                    password: password,
+                    age_group: ageGroupSelect.value || null,
+                    learning_style: styleRadio ? styleRadio.value : null,
+                    goal: goalSelect.value || null
+                };
+
+                registerBtn.disabled = true;
+                registerBtn.textContent = 'Creating account...';
+
+                try {
+                    var response = await fetch('/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    var data = await response.json().catch(function () { return {}; });
+
+                    if (response.ok && data.success !== false) {
+                        showToast('Account created. Welcome, ' + name + '!', 'success');
+                        setTimeout(function () {
+                            window.location.href = '/home';
+                        }, 900);
+                    } else {
+                        showToast(data.message || data.detail || 'Registration failed. Please try again.','error');
+                        registerBtn.disabled = false;
+                        registerBtn.textContent = 'Create account';
+                    }
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    showToast('Error connecting to server. Please try again.', 'error');
+                    registerBtn.disabled = false;
+                    registerBtn.textContent = 'Create account';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
