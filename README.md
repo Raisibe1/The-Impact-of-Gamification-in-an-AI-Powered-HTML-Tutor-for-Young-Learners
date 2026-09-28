@@ -74,3 +74,12 @@ venv_data\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+## Data Preprocessing
+
+### StudyChat Dataset
+
+- Raw data: `data/raw/studychat.csv` (16,851 conversations)
+- Processed data: `data/processed/studychat_cleaned.csv`
+- Preprocessing script: `scripts/preprocess_studychat.py`
+
