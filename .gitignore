@@ -49,4 +49,5 @@ gdrive.exe
 rclone.exe
 
 # LFS (large file storage)
-.gitattributes
+.gitattributes.ipynb_checkpoints/
+.ipynb_checkpoints/
