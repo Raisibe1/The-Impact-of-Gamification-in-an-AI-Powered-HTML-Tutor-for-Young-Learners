@@ -18,7 +18,7 @@ A web browser is the app you use to look at websites. Common examples are Google
 
 **What is HTML?**
 
-HTML stands for HyperText Markup Language. It is the language used to build the structure of every webpage. Think of HTML like the bricks and walls of a house. The bricks give the house its shape, and HTML gives a webpage its shape. HTML is not a programming language it does not do maths or make decisions. It simply tells the browser what each piece of content is: a heading, a paragraph, a picture, or a link. HTML uses tags to do this. A tag is a special word inside angle brackets, like <p> or <h1>.
+HTML stands for HyperText Markup Language. It is the language used to build the structure of every webpage. Think of HTML like the bricks and walls of a house. The bricks give the house its shape, and HTML gives a webpage its shape. HTML is not a programming language it does not do maths or make decisions. It simply tells the browser what each piece of content is: a heading, a paragraph, a picture, or a link. HTML uses tags to do this. A tag is a special word inside angle brackets, like "<p> or <h1>".
 
 
 
@@ -28,19 +28,19 @@ When you open an HTML file in a browser, the browser reads the tags and displays
 
 
 
-* The <head> — this contains information about the page, like the title that appears in the browser tab. You do not see this on the page itself.
+* The "<head>" = this contains information about the page, like the title that appears in the browser tab. You do not see this on the page itself.
 
 
 
-* The <body> — this contains everything you can see: text, images, buttons, and more.
+* The "<body>" = this contains everything you can see: text, images, buttons, and more.
 
 
 
-The very first thing you type in an HTML file is <!DOCTYPE html>. This tells the browser, "Hey, this is an HTML5 document!" Then everything goes inside <html> tags.
+The very first thing you type in an HTML file is "<!DOCTYPE html>". This tells the browser, "Hey, this is an HTML5 document!" Then everything goes inside "<html>" tags.
 
 
 
 **Why Does This Matter?**
 
-Every website you have ever visited ,from YouTube to your school's website — was built with HTML. Learning HTML gives you the power to create your own web pages and share your ideas with the world.
+Every website you have ever visited ,from YouTube to your school's website, was built with HTML. Learning HTML gives you the power to create your own web pages and share your ideas with the world.
 

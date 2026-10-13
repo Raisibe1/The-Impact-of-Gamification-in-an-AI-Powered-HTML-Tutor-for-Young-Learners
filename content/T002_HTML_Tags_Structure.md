@@ -6,11 +6,11 @@ Grade Level: 7 | Duration: 18 minutes | Difficulty: 1 (Easy)
 
 **What Are Tags?**
 
-Tags are the building blocks of HTML. They are special words inside angle brackets, like <p> or <h1>. Most tags come in pairs: an opening tag like <p> and a closing tag like </p>. The closing tag has a forward slash /. Everything between the opening and closing tags is the content.
+Tags are the building blocks of HTML. They are special words inside angle brackets, like "<p>" or "<h1>". Most tags come in pairs: an opening tag like "<p>" and a closing tag like "</p>". The closing tag has a forward slash /. Everything between the opening and closing tags is the content.
 
 
 
-Some tags, like <br> (line break) and <img> (image), are self-closing — they do not need a closing tag.
+Some tags, like "<br>" (line break) and "<img>" (image), are self-closing, they do not need a closing tag.
 
 
 
@@ -18,7 +18,7 @@ Some tags, like <br> (line break) and <img> (image), are self-closing — they d
 
 Every HTML page follows the same basic structure:
 
-<!DOCTYPE html>
+(<!DOCTYPE html>
 
 <html>
 
@@ -36,7 +36,7 @@ Every HTML page follows the same basic structure:
 
 &#x20; </body>
 
-</html>
+</html>)
 
 
 
@@ -44,35 +44,35 @@ Every HTML page follows the same basic structure:
 
 
 
-<!DOCTYPE html> — Tells the browser this is an HTML5 document.
+"<!DOCTYPE html>" — Tells the browser this is an HTML5 document.
 
 
 
-<html> — The root tag that wraps everything.
+"<html>" — The root tag that wraps everything.
 
 
 
-<head> — Contains information about the page. The <title> tag inside the head sets the text that appears in the browser tab.
+"<head>" — Contains information about the page. The "<title>" tag inside the head sets the text that appears in the browser tab.
 
 
 
-<body> — Contains everything you see on the page.
+"<body>" — Contains everything you see on the page.
 
 
 
 **Headings and Paragraphs**
 
-HTML gives you six heading sizes: <h1> (the biggest and most important) down to <h6> (the smallest). You use headings for titles and subtitles, just like in a school project.
+HTML gives you six heading sizes: "<h1>" (the biggest and most important) down to "<h6>" (the smallest). You use headings for titles and subtitles, just like in a school project.
 
 
 
-The <p> tag creates a paragraph of text. When you write text between <p> and </p>, the browser displays it as a block of text.
+The "<p>" tag creates a paragraph of text. When you write text between "<p>" and "</p>", the browser displays it as a block of text.
 
 
 
 **Line Breaks**
 
-If you want to start a new line without starting a new paragraph, use the <br> tag. It is self-closing, so you just type <br> — no closing tag needed. This is useful for addresses or poems.
+If you want to start a new line without starting a new paragraph, use the "<br>" tag. It is self-closing, so you just type "<br>" , no closing tag needed. This is useful for addresses or poems.
 
 
 
