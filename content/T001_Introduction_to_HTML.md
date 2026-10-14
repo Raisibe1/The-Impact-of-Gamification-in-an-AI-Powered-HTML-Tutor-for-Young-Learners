@@ -19,11 +19,11 @@ A **web browser** is the app you use to look at websites. Common examples are **
 
 When you open an HTML file in a browser, the browser reads the tags and displays the content. Every HTML page has **two main parts**:
 
-- **The `<head>`** — this contains information *about* the page, like the title that appears in the browser tab. You do not see this on the page itself.
-- **The `<body>`** — this contains everything you **can see**: text, images, buttons, and more.
+- **The `<head>`** = this contains information *about* the page, like the title that appears in the browser tab. You do not see this on the page itself.
+- **The `<body>`** = this contains everything you **can see**: text, images, buttons, and more.
 
 The very first thing you type in an HTML file is `<!DOCTYPE html>`. This tells the browser, "Hey, this is an HTML5 document!" Then everything goes inside `<html>` tags.
 
 ## Why Does This Matter?
 
-Every website you have ever visited — from YouTube to your school's website — was built with HTML. Learning HTML gives you the power to create your own web pages and share your ideas with the world.
+Every website you have ever visited from YouTube to your school's website, was built with HTML. Learning HTML gives you the power to create your own web pages and share your ideas with the world.
