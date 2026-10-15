@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development Academy | HTML Multimedia Module</title>
+  <style>
+    :root { --navy:#10233f; --green:#176b4d; --mint:#eaf5ef; --gold:#f2c66d; --ink:#203047; --muted:#5c6b7e; --paper:#f5f8fb; --white:#fff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; line-height:1.65; color:var(--ink); background:var(--paper); }
+    header { padding:2.6rem 1.2rem; color:white; background:linear-gradient(130deg,var(--navy),var(--green)); }
+    .wrap { width:min(100% - 2rem, 1050px); margin:auto; }
+    header h1 { margin:.25rem 0; font-size:clamp(2rem,5vw,3.2rem); line-height:1.15; }
+    header p { max-width:700px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.12em; font-weight:bold; color:var(--gold); font-size:.8rem; }
+    nav { background:#fff; border-bottom:1px solid #dce5ec; position:sticky; top:0; z-index:5; }
+    nav .wrap { display:flex; flex-wrap:wrap; gap:.4rem 1rem; padding:.8rem 0; }
+    nav a { color:var(--green); font-weight:bold; text-decoration:none; }
+    nav a:hover, nav a:focus { text-decoration:underline; }
+    main { padding:1.5rem 0 3rem; }
+    section, .panel { background:white; border:1px solid #e0e7ed; border-radius:16px; padding:clamp(1rem,3vw,1.7rem); margin:1rem 0; box-shadow:0 4px 18px #10233f0a; }
+    h2 { color:var(--green); margin-top:0; }
+    h3 { color:var(--navy); margin-bottom:.35rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .tile { padding:1rem; background:var(--mint); border-radius:12px; }
+    code { background:#eef2f6; border-radius:4px; padding:.1rem .28rem; overflow-wrap:anywhere; }
+    pre { padding:1rem; border-radius:10px; background:#10233f; color:#f3f7ff; overflow:auto; line-height:1.5; }
+    pre code { background:transparent; color:inherit; padding:0; }
+    .note { border-left:4px solid var(--gold); padding:.7rem 1rem; background:#fff8e8; border-radius:0 8px 8px 0; }
+    .demo { border:1px dashed #b7c8d5; border-radius:12px; padding:1rem; margin:.8rem 0; background:#fbfdff; }
+    .demo a { color:#075fbd; }
+    figure { margin:1rem 0; }
+    figure img { display:block; width:min(100%,560px); height:auto; border-radius:12px; }
+    figcaption { color:var(--muted); font-size:.92rem; margin-top:.4rem; }
+    audio, video { display:block; max-width:100%; margin:.7rem 0; }
+    .btn { border:0; border-radius:8px; padding:.7rem 1rem; background:var(--green); color:white; font-weight:bold; cursor:pointer; }
+    .btn:hover { filter:brightness(1.08); }
+    .question { border-top:1px solid #e1e7ed; padding:1rem 0; }
+    .question:first-of-type { border-top:0; }
+    label { display:block; margin:.35rem 0; cursor:pointer; }
+    .result { font-weight:bold; padding:.8rem; border-radius:8px; margin-top:1rem; }
+    .small { color:var(--muted); font-size:.92rem; }
+    footer { padding:1.5rem; text-align:center; color:#eaf5ef; background:var(--navy); }
+    :focus-visible { outline:3px solid #dc9e16; outline-offset:3px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Web Development Academy · Grade 7</div>
+    <h1>Hyperlinks, Images &amp; Multimedia</h1>
+    <p>Learn to connect webpages, display images, and add sound and video. Then combine these skills to build a mini learning webpage.</p>
+    <p><strong>Suggested time:</strong> 60–90 minutes · <strong>Level:</strong> Beginner</p>
+  </div>
+</header>
+<nav aria-label="Lesson navigation">
+  <div class="wrap">
+    <a href="#goals">Goals</a><a href="#links">Hyperlinks</a><a href="#images">Images</a>
+    <a href="#media">Multimedia</a><a href="#project">Build a page</a><a href="#quiz">Quiz</a>
+  </div>
+</nav>
+<main class="wrap">
+  <section id="goals">
+    <h2>Learning goals</h2>
+    <p>By the end of this lesson, you should be able to:</p>
+    <ul>
+      <li>Create links to other websites, other HTML files, and sections on the same page.</li>
+      <li>Insert images using <code>&lt;img&gt;</code>, <code>src</code>, and meaningful <code>alt</code> text.</li>
+      <li>Add audio and video players with controls.</li>
+      <li>Use correct file paths and test whether media loads.</li>
+      <li>Use media responsibly by checking permission, licence, and accessibility needs.</li>
+    </ul>
+  </section>
+
+  <section id="links">
+    <h2>1. Hyperlinks: connect the web</h2>
+    <p>A <strong>hyperlink</strong> is a clickable link that takes a visitor to another page, website, file, or section. The HTML <code>&lt;a&gt;</code> element is called an <em>anchor</em>.</p>
+    <pre><code>&lt;a href="https://www.gov.za/"&gt;
+  Visit the South African government website
+&lt;/a&gt;</code></pre>
+    <ul>
+      <li><code>&lt;a&gt;</code> starts the link.</li>
+      <li><code>href</code> gives the destination address.</li>
+      <li>The words between the tags become the clickable text.</li>
+      <li><code>&lt;/a&gt;</code> ends the link.</li>
+    </ul>
+    <div class="demo">
+      <strong>Try this link:</strong>
+      <p><a href="https://www.gov.za/" target="_blank" rel="noopener noreferrer">Visit the South African government website</a></p>
+    </div>
+    <h3>Common hyperlink types</h3>
+    <div class="grid">
+      <div class="tile"><strong>External link</strong><pre><code>&lt;a href="https://example.com/"&gt;
+  Visit Example
+&lt;/a&gt;</code></pre><p>Opens another website.</p></div>
+      <div class="tile"><strong>Another page in your site</strong><pre><code>&lt;a href="about.html"&gt;
+  About us
+&lt;/a&gt;</code></pre><p>Works when <code>about.html</code> exists at that path.</p></div>
+      <div class="tile"><strong>Section on this page</strong><pre><code>&lt;a href="#wildlife"&gt;
+  Jump to wildlife
+&lt;/a&gt;
+
+&lt;h2 id="wildlife"&gt;Wildlife&lt;/h2&gt;</code></pre><p>The fragment matches an element's <code>id</code>.</p></div>
+      <div class="tile"><strong>Email link</strong><pre><code>&lt;a href="mailto:teacher@example.com"&gt;
+  Email the teacher
+&lt;/a&gt;</code></pre><p>Replace the example address with an authorised address.</p></div>
+    </div>
+    <div class="note"><strong>Remember:</strong> use clear link text such as “Read the lesson” instead of “click here” when possible. If using <code>target="_blank"</code>, include <code>rel="noopener"</code>.</div>
+    <h3>Quick check</h3>
+    <p>In <code>&lt;a href="about.html"&gt;About&lt;/a&gt;</code>, which part tells the browser where to go?</p>
+    <details><summary>Show answer</summary><p>The <code>href</code> attribute. Its value, <code>about.html</code>, is the destination.</p></details>
+  </section>
+
+  <section id="images">
+    <h2>2. Images: make a webpage visual</h2>
+    <p>The <code>&lt;img&gt;</code> element displays an image. It is a <strong>void element</strong>, which means it does not need a closing tag.</p>
+    <pre><code>&lt;img src="images/lion.jpg"
+     alt="A lion resting in the grass"
+     width="400"
+     height="267"&gt;</code></pre>
+    <ul>
+      <li><code>src</code> means source: the path or URL to the image.</li>
+      <li><code>alt</code> gives a text alternative describing the image's purpose or content.</li>
+      <li><code>width</code> and <code>height</code> describe the intended display dimensions.</li>
+    </ul>
+    <h3>Live image example</h3>
+    <div class="demo">
+      <figure>
+        <svg role="img" aria-labelledby="svg-title svg-desc" viewBox="0 0 640 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <title id="svg-title">Illustrated South African landscape</title>
+          <desc id="svg-desc">A sun above green hills and a blue river.</desc>
+          <rect width="640" height="300" fill="#dff1f7"/>
+          <circle cx="500" cy="65" r="35" fill="#f4c85b"/>
+          <path d="M0 210 L140 75 L255 210 Z" fill="#718b80"/>
+          <path d="M155 215 L330 55 L500 215 Z" fill="#476f5b"/>
+          <path d="M365 210 L500 115 L640 210 Z" fill="#8ba98a"/>
+          <path d="M0 230 Q140 190 270 240 T640 225 L640 300 L0 300 Z" fill="#4d9bb3"/>
+          <path d="M0 260 Q140 220 270 270 T640 255" fill="none" stroke="#c9edf1" stroke-width="8"/>
+          <text x="24" y="278" fill="#fff" font-size="17" font-family="Arial">A South African landscape</text>
+        </svg>
+        <figcaption>This illustration is embedded directly in the lesson, so it does not need a separate image file.</figcaption>
+      </figure>
+    </div>
+    <h3>Local images and file paths</h3>
+    <p>A project may be arranged like this:</p>
+    <pre><code>my-website/
+├── index.html
+└── images/
+    ├── lion.jpg
+    └── mountain.jpg</code></pre>
+    <p>From <code>index.html</code>, the path to the lion is <code>images/lion.jpg</code>. The folder name, spelling, and file extension must match.</p>
+    <h3>Add a caption</h3>
+    <pre><code>&lt;figure&gt;
+  &lt;img src="images/mountain.jpg"
+       alt="Table Mountain above Cape Town"
+       width="600" height="400"&gt;
+  &lt;figcaption&gt;
+    Table Mountain is a famous landmark.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+    <p><code>&lt;figure&gt;</code> groups the image and its related content. <code>&lt;figcaption&gt;</code> adds a visible caption. Captions and alternative text have different jobs.</p>
+    <h3>Keep images responsive</h3>
+    <pre><code>img {
+  max-width: 100%;
+  height: auto;
+}</code></pre>
+    <p>This CSS helps an image fit its container without stretching its proportions.</p>
+    <div class="note"><strong>Accessibility tip:</strong> write useful alt text for meaningful images. For purely decorative images, use <code>alt=""</code> so assistive technology can skip them.</div>
+  </section>
+
+  <section id="media">
+    <h2>3. Multimedia: audio and video</h2>
+    <p><strong>Multimedia</strong> combines media types such as text, images, sound, and video to communicate information.</p>
+    <h3>Adding audio</h3>
+    <pre><code>&lt;audio controls&gt;
+  &lt;source src="audio/nature.mp3" type="audio/mpeg"&gt;
+  Your browser does not support audio.
+&lt;/audio&gt;</code></pre>
+    <p>The <code>controls</code> attribute displays playback controls. The <code>&lt;source&gt;</code> element specifies the media file and its format.</p>
+    <div class="demo">
+      <strong>Audio player example</strong>
+      <p class="small">This sample uses a public demonstration file and requires an internet connection. If the host changes, use your own permitted audio file.</p>
+      <audio controls preload="none">
+        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+      </audio>
+    </div>
+    <h3>Adding video</h3>
+    <pre><code>&lt;video controls width="640" height="360"&gt;
+  &lt;source src="videos/wildlife.mp4" type="video/mp4"&gt;
+  Your browser does not support video.
+&lt;/video&gt;</code></pre>
+    <p>Useful attributes include <code>controls</code>, <code>width</code>, <code>height</code>, <code>poster</code> (a preview image), <code>muted</code>, and <code>loop</code>.</p>
+    <div class="demo">
+      <strong>Video player example</strong>
+      <p class="small">This public sample demonstrates a video player. Replace it with a video you have permission to use.</p>
+      <video controls width="640" height="360" preload="metadata">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+    <h3>Captions make videos more accessible</h3>
+    <pre><code>&lt;video controls&gt;
+  &lt;source src="videos/wildlife.mp4" type="video/mp4"&gt;
+  &lt;track src="captions/wildlife-en.vtt"
+         kind="captions"
+         srclang="en"
+         label="English"&gt;
+&lt;/video&gt;</code></pre>
+    <p>The WebVTT caption file must exist and contain correctly formatted timestamps and caption text. Provide captions or transcripts where appropriate, and avoid unexpected autoplay.</p>
+    <h3>Embedding an online video</h3>
+    <p>Some video services allow embedding with an <code>&lt;iframe&gt;</code>. Use the embed URL provided by the service, set a descriptive <code>title</code>, and check that the video owner permits embedding.</p>
+    <div class="note"><strong>Be responsible:</strong> use media you created or are licensed to use. Check copyright, permission, and attribution requirements before publishing.</div>
+  </section>
+
+  <section id="project">
+    <h2>4. Practical project: South Africa — A Land of Wonders</h2>
+    <p>Combine hyperlinks, images, audio, and video to create a small learning page. Save this as <code>index.html</code>. Add your own media files in the folders shown below to make the local audio and video work.</p>
+    <pre><code>south-africa/
+├── index.html
+├── images/
+│   └── table-mountain.jpg
+├── audio/
+│   └── nature.mp3
+└── videos/
+    └── wildlife.mp4</code></pre>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;South Africa: A Land of Wonders&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: Arial, sans-serif; line-height: 1.6;
+           max-width: 850px; margin: auto; padding: 1rem; }
+    header, footer { background: #145c42; color: white;
+                     padding: 1rem; text-align: center; }
+    nav { display: flex; flex-wrap: wrap; gap: 1rem; padding: 1rem 0; }
+    img, video { max-width: 100%; height: auto; }
+    section { padding: 1rem 0; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header id="home"&gt;
+    &lt;h1&gt;South Africa: A Land of Wonders&lt;/h1&gt;
+    &lt;p&gt;Discover our country through the web.&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;nav aria-label="Main navigation"&gt;
+    &lt;a href="#home"&gt;Home&lt;/a&gt;
+    &lt;a href="#wildlife"&gt;Wildlife&lt;/a&gt;
+    &lt;a href="#sounds"&gt;Sounds&lt;/a&gt;
+    &lt;a href="#video"&gt;Video&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;main&gt;
+    &lt;section id="wildlife"&gt;
+      &lt;h2&gt;Explore our country&lt;/h2&gt;
+      &lt;figure&gt;
+        &lt;img src="images/table-mountain.jpg"
+             alt="Table Mountain overlooking Cape Town"
+             width="800" height="533"&gt;
+        &lt;figcaption&gt;Table Mountain is a famous landmark.&lt;/figcaption&gt;
+      &lt;/figure&gt;
+      &lt;p&gt;Explore &lt;a href="https://www.sanparks.org/"&gt;
+        South African National Parks&lt;/a&gt;.&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section id="sounds"&gt;
+      &lt;h2&gt;Listen to nature&lt;/h2&gt;
+      &lt;audio controls preload="metadata"&gt;
+        &lt;source src="audio/nature.mp3" type="audio/mpeg"&gt;
+        Your browser does not support audio.
+      &lt;/audio&gt;
+    &lt;/section&gt;
+
+    &lt;section id="video"&gt;
+      &lt;h2&gt;Watch and learn&lt;/h2&gt;
+      &lt;video controls width="640" height="360"&gt;
+        &lt;source src="videos/wildlife.mp4" type="video/mp4"&gt;
+        Your browser does not support video.
+      &lt;/video&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;Created by a young web developer!&lt;/p&gt;
+    &lt;a href="#home" style="color:white"&gt;Back to top&lt;/a&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <h3>Project checklist</h3>
+    <ul>
+      <li>Does each navigation link jump to the correct section?</li>
+      <li>Does the image load and have meaningful alternative text?</li>
+      <li>Do the audio and video players display controls?</li>
+      <li>Have you tested the page at a narrow screen width?</li>
+      <li>Have you checked that you have permission to use each media file?</li>
+    </ul>
+  </section>
+
+  <section id="quiz">
+    <h2>5. Knowledge check</h2>
+    <p>Choose one answer for each question, then select <strong>Mark my answers</strong>. Each question is worth one mark.</p>
+    <form id="quiz-form">
+      <div class="question">
+        <p><strong>1. Which HTML element creates a hyperlink?</strong></p>
+        <label><input type="radio" name="q1" value="a"> <code>&lt;link&gt;</code></label>
+        <label><input type="radio" name="q1" value="b"> <code>&lt;a&gt;</code></label>
+        <label><input type="radio" name="q1" value="c"> <code>&lt;href&gt;</code></label>
+      </div>
+      <div class="question">
+        <p><strong>2. Which attribute specifies the destination of a hyperlink?</strong></p>
+        <label><input type="radio" name="q2" value="a"> <code>src</code></label>
+        <label><input type="radio" name="q2" value="b"> <code>alt</code></label>
+        <label><input type="radio" name="q2" value="c"> <code>href</code></label>
+      </div>
+      <div class="question">
+        <p><strong>3. Which element embeds an image?</strong></p>
+        <label><input type="radio" name="q3" value="a"> <code>&lt;img&gt;</code></label>
+        <label><input type="radio" name="q3" value="b"> <code>&lt;photo&gt;</code></label>
+        <label><input type="radio" name="q3" value="c"> <code>&lt;imagefile&gt;</code></label>
+      </div>
+      <div class="question">
+        <p><strong>4. What is the purpose of meaningful alt text?</strong></p>
+        <label><input type="radio" name="q4" value="a"> To play a sound</label>
+        <label><input type="radio" name="q4" value="b"> To describe an image's relevant content or purpose in text</label>
+        <label><input type="radio" name="q4" value="c"> To open a new tab</label>
+      </div>
+      <div class="question">
+        <p><strong>5. Which element is used for audio playback?</strong></p>
+        <label><input type="radio" name="q5" value="a"> <code>&lt;audio&gt;</code></label>
+        <label><input type="radio" name="q5" value="b"> <code>&lt;sound&gt;</code></label>
+        <label><input type="radio" name="q5" value="c"> <code>&lt;mp3&gt;</code></label>
+      </div>
+      <div class="question">
+        <p><strong>6. Which element is used for video playback?</strong></p>
+        <label><input type="radio" name="q6" value="a"> <code>&lt;movie&gt;</code></label>
+        <label><input type="radio" name="q6" value="b"> <code>&lt;video&gt;</code></label>
+        <label><input type="radio" name="q6" value="c"> <code>&lt;play&gt;</code></label>
+      </div>
+      <div class="question">
+        <p><strong>7. What does the <code>controls</code> attribute do?</strong></p>
+        <label><input type="radio" name="q7" value="a"> Shows playback controls</label>
+        <label><input type="radio" name="q7" value="b"> Changes the page title</label>
+        <label><input type="radio" name="q7" value="c"> Creates a hyperlink</label>
+      </div>
+      <div class="question">
+        <p><strong>8. Which link jumps to an element with <code>id="contact"</code> on the same page?</strong></p>
+        <label><input type="radio" name="q8" value="a"> <code>href="contact"</code></label>
+        <label><input type="radio" name="q8" value="b"> <code>href="#contact"</code></label>
+        <label><input type="radio" name="q8" value="c"> <code>href=".contact"</code></label>
+      </div>
+      <div class="question">
+        <p><strong>9. Which element can provide a visible caption for an image inside a figure?</strong></p>
+        <label><input type="radio" name="q9" value="a"> <code>&lt;alt&gt;</code></label>
+        <label><input type="radio" name="q9" value="b"> <code>&lt;figcaption&gt;</code></label>
+        <label><input type="radio" name="q9" value="c"> <code>&lt;captiontext&gt;</code></label>
+      </div>
+      <div class="question">
+        <p><strong>10. What should you do before publishing media created by someone else?</strong></p>
+        <label><input type="radio" name="q10" value="a"> Assume it is free to use</label>
+        <label><input type="radio" name="q10" value="b"> Remove all credits</label>
+        <label><input type="radio" name="q10" value="c"> Check permissions, licence terms, and attribution requirements</label>
+      </div>
+      <button class="btn" type="submit">Mark my answers</button>
+      <button class="btn" type="reset" style="background:#526579">Try again</button>
+      <div id="quiz-result" class="result" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section>
+    <h2>6. Practical assessment (20 marks)</h2>
+    <div class="grid">
+      <div class="tile"><strong>Hyperlinks — 4 marks</strong><br>External and internal links work correctly.</div>
+      <div class="tile"><strong>Images — 4 marks</strong><br>At least two images have suitable alt text.</div>
+      <div class="tile"><strong>Captions and layout — 3 marks</strong><br>Captions are appropriate and images resize well.</div>
+      <div class="tile"><strong>Audio — 3 marks</strong><br>An audio player loads and has controls.</div>
+      <div class="tile"><strong>Video — 3 marks</strong><br>A video player loads and has controls.</div>
+      <div class="tile"><strong>Structure and responsibility — 3 marks</strong><br>Page is readable and media is used responsibly.</div>
+    </div>
+    <p><strong>Suggested reflection:</strong> Which part was easiest? Which error did you fix? What would you improve on your page?</p>
+  </section>
+</main>
+<footer>
+  <p><strong>Web Development Academy</strong></p>
+  <p>Learn it · Practise it · Build it</p>
+</footer>
+<script>
+  const answers = {q1:"b",q2:"c",q3:"a",q4:"b",q5:"a",q6:"b",q7:"a",q8:"b",q9:"b",q10:"c"};
+  const form = document.getElementById("quiz-form");
+  const result = document.getElementById("quiz-result");
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let score = 0;
+    let answered = 0;
+    for (const [name, correct] of Object.entries(answers)) {
+      const selected = form.querySelector('input[name="' + name + '"]:checked');
+      if (selected) {
+        answered++;
+        if (selected.value === correct) score++;
+      }
+    }
+    if (answered < Object.keys(answers).length) {
+      result.style.background = "#fff3d4";
+      result.style.color = "#6d4b00";
+      result.textContent = "You answered " + answered + " of 10 questions. Complete every question, then mark your answers.";
+      return;
+    }
+    result.style.background = score >= 8 ? "#e4f6e9" : "#fff3d4";
+    result.style.color = score >= 8 ? "#145c32" : "#6d4b00";
+    result.textContent = "Your score: " + score + "/10. " + (score >= 8 ? "Excellent work! Review the practical project next." : "Review the lesson sections and try again.");
+  });
+  form.addEventListener("reset", function() {
+    result.textContent = "";
+    result.removeAttribute("style");
+  });
+</script>
+</body>
+</html>

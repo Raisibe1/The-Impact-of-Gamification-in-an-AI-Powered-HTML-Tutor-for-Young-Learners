@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>📋 Lists &amp; Tables - Web Dev Quest</title>
+<link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+<style>
+/* ===== PAGE-SPECIFIC STYLES ===== */
+
+/* --- Code blocks --- */
+.code-block {
+    background: #0f0c29;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #e2e8f0;
+    overflow-x: auto;
+    margin: 12px 0;
+    white-space: pre;
+}
+.code-block.small { font-size: 0.8rem; padding: 12px 14px; }
+.code-block .tag { color: #7ee787; }
+.code-block .attr { color: #f6ad55; }
+.code-block .val  { color: #d6bcfa; }
+.code-block .txt  { color: #e2e8f0; }
+.code-block .cmt  { color: #718096; font-style: italic; }
+
+/* --- Quick nav --- */
+.quick-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: rgba(102,126,234,0.08);
+    border: 1px dashed rgba(102,126,234,0.35);
+    border-radius: 12px;
+}
+.quick-nav span {
+    font-size: 0.75rem;
+    color: #a0aec0;
+    align-self: center;
+    margin-right: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.quick-nav a {
+    font-size: 0.82rem;
+    color: #9f7aea;
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.25s ease;
+}
+.quick-nav a:hover {
+    background: rgba(102,126,234,0.25);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* --- Anatomy table --- */
+.anatomy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9rem;
+}
+.anatomy-table th, .anatomy-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.anatomy-table th {
+    color: #f6ad55;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.anatomy-table code {
+    background: rgba(255,255,255,0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #7ee787;
+    font-family: 'Courier New', monospace;
+}
+
+/* --- Demo card --- */
+.demo-card {
+    background: rgba(102,126,234,0.08);
+    border: 1px dashed rgba(102,126,234,0.4);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 16px 0;
+}
+.demo-card .demo-label {
+    font-size: 0.75rem;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+.demo-card ul, .demo-card ol {
+    color: #cbd5e0;
+    padding-left: 22px;
+    line-height: 1.9;
+}
+
+/* --- Builder grid --- */
+.builder-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    margin: 12px 0;
+}
+@media (max-width: 768px) { .builder-grid { grid-template-columns: 1fr; } }
+.builder-grid input,
+.builder-grid textarea {
+    background: #0f0c29;
+    color: #e2e8f0;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+.builder-grid textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: 'Courier New', monospace;
+    grid-column: 1 / -1;
+}
+.builder-grid input:focus,
+.builder-grid textarea:focus { outline: none; border-color: #667eea; }
+
+/* --- MCQ --- */
+.mcq { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.mcq > p { color: #cbd5e0; font-weight: 600; }
+.mcq-btn {
+    text-align: left;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e2e8f0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88rem;
+    transition: all 0.25s ease;
+}
+.mcq-btn:hover { background: rgba(102,126,234,0.15); border-color: #667eea; }
+.mcq-btn.correct   { background: rgba(72,187,120,0.18); border-color: #48bb78; }
+.mcq-btn.incorrect { background: rgba(229,62,62,0.15);  border-color: #e53e3e; }
+.mcq-btn:disabled { cursor: default; }
+.mcq-explain { font-size: 0.85rem; color: #a0aec0; min-height: 18px; }
+
+/* --- Checklist --- */
+.checklist { list-style: none; display: grid; gap: 6px; margin: 12px 0; font-size: 0.9rem; }
+.checklist li { padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.04); color: #a0aec0; }
+.checklist li.ok { background: rgba(72,187,120,0.15); color: #9ae6b4; }
+
+/* --- Code editor --- */
+.code-editor-container {
+    margin: 16px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.code-editor {
+    width: 100%;
+    min-height: 160px;
+    background: #0f0c29;
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    padding: 16px;
+    border: none;
+    outline: none;
+    resize: vertical;
+    tab-size: 2;
+}
+.code-editor:focus { background: #1a1a3e; }
+
+/* --- Matching rows (table anatomy) --- */
+.match-row {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 16px;
+    align-items: center;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.07);
+}
+@media (max-width: 768px) { .match-row { grid-template-columns: 1fr; } }
+.match-row select {
+    background: #0f0c29;
+    color: #e2e8f0;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.match-row select.correct   { border-color: #48bb78; background: rgba(72,187,120,0.15); }
+.match-row select.incorrect { border-color: #e53e3e; background: rgba(229,62,62,0.12); }
+.match-row code {
+    background: rgba(255,255,255,0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: #7ee787;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* --- Marks table --- */
+.marks-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88rem; }
+.marks-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.marks-table td:last-child { text-align: right; font-weight: 700; color: #f6ad55; white-space: nowrap; }
+.marks-table tr.total td { border-bottom: none; border-top: 2px solid rgba(255,255,255,0.15); font-size: 1rem; }
+
+/* --- Documentation log (mark sheet container) --- */
+.documentation-log {
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- Reflection cards --- */
+.reflection-questions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+}
+@media (max-width: 768px) { .reflection-questions { grid-template-columns: 1fr; } }
+.reflection-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.reflection-card h4 { color: #f6ad55; margin-bottom: 8px; }
+.reflection-card p {
+    color: #cbd5e0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.reflection-card textarea {
+    width: 100%;
+    min-height: 70px;
+    background: #0f0c29;
+    color: #e2e8f0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    resize: vertical;
+    margin-top: 8px;
+}
+.reflection-card textarea:focus { outline: none; border-color: #667eea; }
+
+/* --- Lesson steps --- */
+.lesson-step {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    scroll-margin-top: 20px;
+}
+.lesson-step:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.lesson-step h3 { color: #f6ad55; margin-bottom: 12px; }
+.lesson-step h4 { color: #f6ad55; margin: 18px 0 8px; font-size: 1rem; }
+
+.next-lesson-container { margin-top: 30px; text-align: center; }
+</style>
+</head>
+<body>
+<div id="app">
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-left">
+            <h1>🎮 Web Dev Quest</h1>
+            <span class="subtitle">Lists &amp; Tables</span>
+        </div>
+        <div class="user-stats">
+            <div class="stat-item" id="xp-display">
+                <span class="stat-icon">⭐</span>
+                <span class="stat-value" id="xp-count">0</span>
+                <span class="stat-label">XP</span>
+            </div>
+            <div class="stat-item" id="level-display">
+                <span class="stat-icon">🏆</span>
+                <span class="stat-value" id="level-count">1</span>
+                <span class="stat-label">Level</span>
+            </div>
+            <div class="stat-item" id="streak-display">
+                <span class="stat-icon">🔥</span>
+                <span class="stat-value" id="streak-count">0</span>
+                <span class="stat-label">Day Streak</span>
+            </div>
+            <div class="stat-item" id="badge-display">
+                <span class="stat-icon">🎖️</span>
+                <span class="stat-value" id="badge-count">0</span>
+                <span class="stat-label">Badges</span>
+            </div>
+            <div class="btn btn-primary">
+                <a href="http://localhost:5173/" class="primary">Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PROGRESS PATH ===== -->
+    <div class="path-progress">
+        <div class="path-node completed" data-lesson="html">
+            <span class="node-icon">📚</span>
+            <span class="node-label">HTML</span>
+            <span class="node-status">✅</span>
+        </div>
+        <div class="path-line"></div>
+        <div class="path-node completed" data-lesson="css">
+            <span class="node-icon">🎨</span>
+            <span class="node-label">CSS</span>
+            <span class="node-status">✅</span>
+        </div>
+        <div class="path-line"></div>
+        <div class="path-node completed" data-lesson="design">
+            <span class="node-icon">🎯</span>
+            <span class="node-label">Design</span>
+            <span class="node-status">✅</span>
+        </div>
+        <div class="path-line"></div>
+        <div class="path-node completed" data-lesson="journey">
+            <span class="node-icon">🔍</span>
+            <span class="node-label">Journey</span>
+            <span class="node-status">✅</span>
+        </div>
+        <div class="path-line"></div>
+        <div class="path-node completed" data-lesson="multimedia">
+            <span class="node-icon">🔗</span>
+            <span class="node-label">Media</span>
+            <span class="node-status">✅</span>
+        </div>
+        <div class="path-line"></div>
+        <div class="path-node active" data-lesson="lists">
+            <span class="node-icon">📋</span>
+            <span class="node-label">Lists</span>
+            <span class="node-status">▶️</span>
+        </div>
+        <div class="path-line"></div>
+        <div class="path-node locked" data-lesson="js">
+            <span class="node-icon">⚡</span>
+            <span class="node-label">JavaScript</span>
+            <span class="node-status">🔒</span>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <div id="lesson-container">
+            <div class="lesson">
+                <div class="lesson-header">
+                    <h2>📋 HTML Lists &amp; Tables</h2>
+                    <span class="lesson-xp">⭐ 150 XP + 20-mark practical</span>
+                </div>
+
+                <div class="lesson-content">
+                    <!-- Live jump nav -->
+                    <div class="quick-nav">
+                        <span>Jump to:</span>
+                        <a href="#step1">1. Ordered Lists</a>
+                        <a href="#step2">2. Unordered Lists</a>
+                        <a href="#step3">3. Nested Lists</a>
+                        <a href="#step4">4. Tables</a>
+                        <a href="#step5">5. Captions &amp; Accessibility</a>
+                        <a href="#step6">6. Practical</a>
+                        <a href="#step7">7. Reflection</a>
+                    </div>
+
+                    <!-- ============================================================
+                         STEP 1 — ORDERED LISTS
+                    ============================================================ -->
+                    <section class="lesson-step" id="step1">
+                        <h3>1️⃣ Step 1: Ordered Lists (&lt;ol&gt;)</h3>
+                        <p style="color:#cbd5e0;">
+                            An <strong>ordered list</strong> is used when the <em>order matters</em>.
+                            Think of a recipe, a set of steps, or a top-10 ranking.
+                            Browsers number the items automatically.
+                        </p>
+
+<pre class="code-block"><span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Boil the water</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Add the pasta</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Cook for 8 minutes</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></pre>
+
+                        <table class="anatomy-table">
+                            <thead><tr><th>Tag</th><th>What it does</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>&lt;ol&gt;</code></td><td>Opens the ordered list container.</td></tr>
+                                <tr><td><code>&lt;li&gt;</code></td><td>Wraps a single list item.</td></tr>
+                                <tr><td><code>&lt;/ol&gt;</code></td><td>Closes the list.</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>🎨 Useful attributes</h4>
+                        <table class="anatomy-table">
+                            <thead><tr><th>Attribute</th><th>Example</th><th>Result</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>type</code></td><td><code>type="A"</code></td><td>A, B, C…</td></tr>
+                                <tr><td><code>type</code></td><td><code>type="i"</code></td><td>i, ii, iii…</td></tr>
+                                <tr><td><code>start</code></td><td><code>start="5"</code></td><td>Begins counting at 5</td></tr>
+                                <tr><td><code>reversed</code></td><td><code>reversed</code></td><td>Counts backwards</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div class="demo-card">
+                            <span class="demo-label">Live example</span>
+                            <ol style="color:#cbd5e0; padding-left:22px; line-height:1.9;">
+                                <li>Open your text editor</li>
+                                <li>Create a new file called <code>index.html</code></li>
+                                <li>Save it in your project folder</li>
+                            </ol>
+                        </div>
+
+                        <h4>🎯 Activity 1: Ordered List Builder</h4>
+                        <p style="color:#cbd5e0;">
+                            Type a title and one item per line. Watch the code and the live list build themselves.
+                        </p>
+                        <div class="builder-grid">
+                            <input type="text" id="ol-title"
+                                   placeholder="List title, e.g. How to bake a cake" />
+                            <input type="text" id="ol-type"
+                                   placeholder="List style (1, A, a, i, I)" />
+                            <textarea id="ol-items" spellcheck="false"
+placeholder="One item per line, e.g.
+Preheat the oven
+Mix the flour and sugar
+Bake for 25 minutes"></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="buildOrderedList()">🔧 Generate List</button>
+                            <button class="btn btn-secondary" onclick="resetOrderedList()">♻️ Clear</button>
+                        </div>
+
+                        <pre class="code-block small" id="ol-code">Your code will appear here…</pre>
+
+                        <div class="demo-card" id="ol-preview-wrap" style="display:none;">
+                            <span class="demo-label">Live preview</span>
+                            <div id="ol-preview"></div>
+                        </div>
+
+                        <div class="button-group" style="margin-top:16px;">
+                            <button class="btn btn-success" onclick="completeStep('step1')">✅ Mark as Complete</button>
+                        </div>
+                        <div id="step1-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- ============================================================
+                         STEP 2 — UNORDERED LISTS
+                    ============================================================ -->
+                    <section class="lesson-step" id="step2">
+                        <h3>🔘 Step 2: Unordered Lists (&lt;ul&gt;)</h3>
+                        <p style="color:#cbd5e0;">
+                            An <strong>unordered list</strong> is used when the <em>order does not matter</em>.
+                            Browsers show each item with a bullet point.
+                        </p>
+
+<pre class="code-block"><span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Springbok</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Elephant</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Lion</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></pre>
+
+                        <div class="concept-box">
+                            <p style="margin:0;">
+                                💡 <strong>Rule of thumb:</strong> if you could shuffle the items and nothing breaks,
+                                use <code>&lt;ul&gt;</code>. If the sequence matters, use <code>&lt;ol&gt;</code>.
+                            </p>
+                        </div>
+
+                        <table class="anatomy-table">
+                            <thead><tr><th>Use &lt;ol&gt; when…</th><th>Use &lt;ul&gt; when…</th></tr></thead>
+                            <tbody>
+                                <tr><td>Instructions or recipes</td><td>Shopping list</td></tr>
+                                <tr><td>Top 10 ranking</td><td>Features of a product</td></tr>
+                                <tr><td>Steps in a process</td><td>Navigation menu</td></tr>
+                                <tr><td>Legal clauses</td><td>Hobbies or interests</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>🎯 Activity 2: Which List Should You Use?</h4>
+                        <p style="color:#cbd5e0;">Answer all three questions.</p>
+
+                        <div id="list-quiz">
+                            <div class="mcq">
+                                <p>1. A list of steps for assembling a desk. Which list?</p>
+                                <button class="mcq-btn" data-correct="true"
+                                    data-explain="Correct! Assembly steps are ordered."
+                                    onclick="answerMCQ(this, 'step2-q1')">&lt;ol&gt;</button>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step2-q1')">&lt;ul&gt;</button>
+                                <div class="mcq-explain"></div>
+                            </div>
+
+                            <div class="mcq">
+                                <p>2. A menu of top-level website sections. Which list?</p>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step2-q2')">&lt;ol&gt;</button>
+                                <button class="mcq-btn" data-correct="true"
+                                    data-explain="Correct! Navigation order does not matter."
+                                    onclick="answerMCQ(this, 'step2-q2')">&lt;ul&gt;</button>
+                                <div class="mcq-explain"></div>
+                            </div>
+
+                            <div class="mcq">
+                                <p>3. A ranking of the 5 fastest land animals. Which list?</p>
+                                <button class="mcq-btn" data-correct="true"
+                                    data-explain="Correct! A ranking is ordered from #1 down."
+                                    onclick="answerMCQ(this, 'step2-q3')">&lt;ol&gt;</button>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step2-q3')">&lt;ul&gt;</button>
+                                <div class="mcq-explain"></div>
+                            </div>
+                        </div>
+
+                        <div class="button-group" style="margin-top:16px;">
+                            <button class="btn btn-success" onclick="completeStep('step2')">✅ Mark as Complete</button>
+                        </div>
+                        <div id="step2-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- ============================================================
+                         STEP 3 — NESTED LISTS
+                    ============================================================ -->
+                    <section class="lesson-step" id="step3">
+                        <h3>🪆 Step 3: Nested Lists</h3>
+                        <p style="color:#cbd5e0;">
+                            A <strong>nested list</strong> is a list inside a list item. It is perfect for
+                            organising information into categories and sub-categories.
+                        </p>
+
+<pre class="code-block"><span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Mammals</span>
+    <span class="tag">&lt;ul&gt;</span>
+      <span class="tag">&lt;li&gt;</span><span class="txt">Elephant</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;li&gt;</span><span class="txt">Lion</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Birds</span>
+    <span class="tag">&lt;ul&gt;</span>
+      <span class="tag">&lt;li&gt;</span><span class="txt">Eagle</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;li&gt;</span><span class="txt">Penguin</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+  <span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></pre>
+
+                        <div class="concept-box">
+                            <p style="margin:0 0 8px;"><strong>🚨 Golden rule of nesting</strong></p>
+                            <p style="margin:0;">
+                                The inner list must sit <em>inside</em> an <code>&lt;li&gt;</code>,
+                                right before that item's closing tag. If you put it anywhere else,
+                                the browser will "fix" your code in ways you didn't expect.
+                            </p>
+                        </div>
+
+                        <h4>✅ Correct vs ❌ Incorrect</h4>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:12px 0;">
+                            <div>
+                                <p style="color:#9ae6b4; font-size:0.85rem; margin-bottom:6px;">✅ Correct</p>
+<pre class="code-block small" style="margin:0;">&lt;ul&gt;
+  &lt;li&gt;Fruit
+    &lt;ul&gt;
+      &lt;li&gt;Apple&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
+                            </div>
+                            <div>
+                                <p style="color:#feb2b2; font-size:0.85rem; margin-bottom:6px;">❌ Incorrect</p>
+<pre class="code-block small" style="margin:0;">&lt;ul&gt;
+  &lt;li&gt;Fruit&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Apple&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;</pre>
+                            </div>
+                        </div>
+
+                        <h4>🎯 Activity 3: Build a Nested List</h4>
+                        <p style="color:#cbd5e0;">
+                            Write HTML for a nested list with at least one parent item and
+                            one sub-list containing two or more children. It must open with
+                            <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>, contain
+                            <code>&lt;li&gt;</code> items, and nest an inner list inside a parent
+                            <code>&lt;li&gt;</code>.
+                        </p>
+
+                        <div class="code-editor-container">
+                            <textarea id="nested-code" class="code-editor" spellcheck="false"
+placeholder="Write your nested list here…"></textarea>
+                        </div>
+
+                        <ul class="checklist" id="nested-checklist">
+                            <li>⬜ Uses &lt;ul&gt; or &lt;ol&gt; as the outer list</li>
+                            <li>⬜ Contains at least two &lt;li&gt; items</li>
+                            <li>⬜ Inner list is placed inside a parent &lt;li&gt;</li>
+                            <li>⬜ All tags are properly closed</li>
+                        </ul>
+
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="checkNestedList()">🔍 Check My Code</button>
+                            <button class="btn btn-secondary" onclick="resetNestedList()">♻️ Clear</button>
+                        </div>
+
+                        <div class="demo-card" id="nested-preview-wrap" style="display:none;">
+                            <span class="demo-label">Live preview</span>
+                            <div id="nested-preview"></div>
+                        </div>
+
+                        <div class="button-group" style="margin-top:16px;">
+                            <button class="btn btn-success" onclick="completeStep('step3')">✅ Mark as Complete</button>
+                        </div>
+                        <div id="step3-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- ============================================================
+                         STEP 4 — TABLES
+                    ============================================================ -->
+                    <section class="lesson-step" id="step4">
+                        <h3>📊 Step 4: Tables (&lt;table&gt;)</h3>
+                        <p style="color:#cbd5e0;">
+                            A <strong>table</strong> organises information into rows and columns.
+                            Use tables for <em>data</em> (timetables, prices, results) —
+                            never for page layout.
+                        </p>
+
+                        <h4>🏗️ The four core tags</h4>
+                        <table class="anatomy-table">
+                            <thead><tr><th>Tag</th><th>Meaning</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>&lt;table&gt;</code></td><td>Wraps the entire table.</td></tr>
+                                <tr><td><code>&lt;tr&gt;</code></td><td><strong>T</strong>able <strong>R</strong>ow — one row of cells.</td></tr>
+                                <tr><td><code>&lt;th&gt;</code></td><td><strong>T</strong>able <strong>H</strong>eader — a bold heading cell.</td></tr>
+                                <tr><td><code>&lt;td&gt;</code></td><td><strong>T</strong>able <strong>D</strong>ata — a normal cell.</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>📅 Example: A school timetable</h4>
+<pre class="code-block"><span class="tag">&lt;table&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;th&gt;</span><span class="txt">Time</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;th&gt;</span><span class="txt">Monday</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;th&gt;</span><span class="txt">Tuesday</span><span class="tag">&lt;/th&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="txt">08:00</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="txt">Maths</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="txt">English</span><span class="tag">&lt;/td&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+<span class="tag">&lt;/table&gt;</span></pre>
+
+                        <div class="demo-card">
+                            <span class="demo-label">Live table</span>
+                            <table style="border-collapse:collapse; width:100%; font-size:0.88rem;">
+                                <tr>
+                                    <th style="text-align:left; padding:8px 12px; color:#f6ad55; border-bottom:1px solid rgba(255,255,255,0.1);">Time</th>
+                                    <th style="text-align:left; padding:8px 12px; color:#f6ad55; border-bottom:1px solid rgba(255,255,255,0.1);">Monday</th>
+                                    <th style="text-align:left; padding:8px 12px; color:#f6ad55; border-bottom:1px solid rgba(255,255,255,0.1);">Tuesday</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding:8px 12px; color:#cbd5e0; border-bottom:1px solid rgba(255,255,255,0.05);">08:00</td>
+                                    <td style="padding:8px 12px; color:#cbd5e0; border-bottom:1px solid rgba(255,255,255,0.05);">Maths</td>
+                                    <td style="padding:8px 12px; color:#cbd5e0; border-bottom:1px solid rgba(255,255,255,0.05);">English</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:8px 12px; color:#cbd5e0;">09:00</td>
+                                    <td style="padding:8px 12px; color:#cbd5e0;">Science</td>
+                                    <td style="padding:8px 12px; color:#cbd5e0;">History</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <h4>🎯 Activity 4: Table Anatomy</h4>
+                        <p style="color:#cbd5e0;">
+                            Match each tag to the role it plays inside a table.
+                        </p>
+
+                        <div id="table-match">
+                            <div class="match-row">
+                                <code>&lt;table&gt;</code>
+                                <select onchange="checkTableMatch(this)" data-correct="container">
+                                    <option value="">Choose the role…</option>
+                                    <option value="container">Wraps the whole table</option>
+                                    <option value="row">A single row</option>
+                                    <option value="header">A heading cell</option>
+                                    <option value="data">A normal data cell</option>
+                                </select>
+                            </div>
+                            <div class="match-row">
+                                <code>&lt;tr&gt;</code>
+                                <select onchange="checkTableMatch(this)" data-correct="row">
+                                    <option value="">Choose the role…</option>
+                                    <option value="container">Wraps the whole table</option>
+                                    <option value="row">A single row</option>
+                                    <option value="header">A heading cell</option>
+                                    <option value="data">A normal data cell</option>
+                                </select>
+                            </div>
+                            <div class="match-row">
+                                <code>&lt;th&gt;</code>
+                                <select onchange="checkTableMatch(this)" data-correct="header">
+                                    <option value="">Choose the role…</option>
+                                    <option value="container">Wraps the whole table</option>
+                                    <option value="row">A single row</option>
+                                    <option value="header">A heading cell</option>
+                                    <option value="data">A normal data cell</option>
+                                </select>
+                            </div>
+                            <div class="match-row">
+                                <code>&lt;td&gt;</code>
+                                <select onchange="checkTableMatch(this)" data-correct="data">
+                                    <option value="">Choose the role…</option>
+                                    <option value="container">Wraps the whole table</option>
+                                    <option value="row">A single row</option>
+                                    <option value="header">A heading cell</option>
+                                    <option value="data">A normal data cell</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="button-group" style="margin-top:16px;">
+                            <button class="btn btn-success" onclick="completeStep('step4')">✅ Mark as Complete</button>
+                        </div>
+                        <div id="step4-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- ============================================================
+                         STEP 5 — CAPTIONS & ACCESSIBILITY
+                    ============================================================ -->
+                    <section class="lesson-step" id="step5">
+                        <h3>♿ Step 5: Captions &amp; Accessible Tables</h3>
+                        <p style="color:#cbd5e0;">
+                            A table without a title is like a chapter without a heading.
+                            Adding a <code>&lt;caption&gt;</code> and using
+                            <code>scope</code> on your header cells makes tables usable
+                            for everyone — including people who use screen readers.
+                        </p>
+
+                        <h4>🏷️ Adding a caption</h4>
+<pre class="code-block"><span class="tag">&lt;table&gt;</span>
+  <span class="tag">&lt;caption&gt;</span><span class="txt">Grade 7 Timetable — Term 1</span><span class="tag">&lt;/caption&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;th</span> <span class="attr">scope</span>=<span class="val">"col"</span><span class="tag">&gt;</span><span class="txt">Time</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;th</span> <span class="attr">scope</span>=<span class="val">"col"</span><span class="tag">&gt;</span><span class="txt">Monday</span><span class="tag">&lt;/th&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;th</span> <span class="attr">scope</span>=<span class="val">"row"</span><span class="tag">&gt;</span><span class="txt">08:00</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;td&gt;</span><span class="txt">Maths</span><span class="tag">&lt;/td&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+<span class="tag">&lt;/table&gt;</span></pre>
+
+                        <table class="anatomy-table">
+                            <thead><tr><th>Attribute</th><th>Meaning</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>scope="col"</code></td><td>This header describes a <strong>column</strong>.</td></tr>
+                                <tr><td><code>scope="row"</code></td><td>This header describes a <strong>row</strong>.</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div class="concept-box">
+                            <p style="margin:0;">
+                                🔊 Screen readers announce cells like this:
+                                <em>"Monday, 08:00, Maths."</em>
+                                Without <code>scope</code> the reader can only guess which header belongs where.
+                            </p>
+                        </div>
+
+                        <h4>🎯 Activity 5: Accessibility Check</h4>
+
+                        <div id="a11y-quiz">
+                            <div class="mcq">
+                                <p>1. Which tag gives a table a visible title?</p>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step5-q1')">&lt;title&gt;</button>
+                                <button class="mcq-btn" data-correct="true"
+                                    data-explain="Correct! &lt;caption&gt; goes inside &lt;table&gt;."
+                                    onclick="answerMCQ(this, 'step5-q1')">&lt;caption&gt;</button>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step5-q1')">&lt;h1&gt;</button>
+                                <div class="mcq-explain"></div>
+                            </div>
+
+                            <div class="mcq">
+                                <p>2. Which <code>scope</code> value describes a column header?</p>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step5-q2')">scope="row"</button>
+                                <button class="mcq-btn" data-correct="true"
+                                    data-explain="Correct! scope=&quot;col&quot; marks a column heading."
+                                    onclick="answerMCQ(this, 'step5-q2')">scope="col"</button>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step5-q2')">scope="cell"</button>
+                                <div class="mcq-explain"></div>
+                            </div>
+
+                            <div class="mcq">
+                                <p>3. Why should we avoid using tables for page layout?</p>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step5-q3')">Tables are too slow.</button>
+                                <button class="mcq-btn" data-correct="true"
+                                    data-explain="Correct! Screen readers would announce meaningless row/column relationships."
+                                    onclick="answerMCQ(this, 'step5-q3')">Tables convey data relationships, not visual layout.</button>
+                                <button class="mcq-btn" data-correct="false"
+                                    onclick="answerMCQ(this, 'step5-q3')">Tables cannot hold images.</button>
+                                <div class="mcq-explain"></div>
+                            </div>
+                        </div>
+
+                        <div class="button-group" style="margin-top:16px;">
+                            <button class="btn btn-success" onclick="completeStep('step5')">✅ Mark as Complete</button>
+                        </div>
+                        <div id="step5-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- ============================================================
+                         STEP 6 — PRACTICAL ASSESSMENT
+                    ============================================================ -->
+                    <section class="lesson-step" id="step6">
+                        <h3>🏆 Step 6: Practical Assessment
+                            <span style="color:#a0aec0; font-size:0.85rem;">(20 marks)</span>
+                        </h3>
+                        <p style="color:#cbd5e0;">
+                            Build a small webpage that combines lists and tables.
+                            Write your HTML in the editor below, then submit it for marking.
+                        </p>
+
+                        <div class="concept-box">
+                            <p style="margin:0 0 8px;"><strong>📋 Your page must include:</strong></p>
+                            <ul style="color:#cbd5e0; padding-left:20px; line-height:1.9;">
+                                <li>An <strong>ordered list</strong> (<code>&lt;ol&gt;</code>) with 3+ items <em>(5 marks)</em></li>
+                                <li>An <strong>unordered list</strong> (<code>&lt;ul&gt;</code>) with 3+ items <em>(5 marks)</em></li>
+                                <li>A <strong>table</strong> using <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code> and <code>&lt;td&gt;</code> <em>(5 marks)</em></li>
+                                <li>A <code>&lt;caption&gt;</code> or a <code>scope</code> attribute on a header cell <em>(5 marks)</em></li>
+                            </ul>
+                        </div>
+
+                        <div class="code-editor-container">
+                            <textarea id="project-code" class="code-editor" spellcheck="false" style="min-height:280px;"
+placeholder="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;"></textarea>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="markProject()">📤 Submit for Marking</button>
+                            <button class="btn btn-success" onclick="completeStep('step6')">✅ Mark as Complete</button>
+                        </div>
+
+                        <div id="project-results"></div>
+                        <div id="step6-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- ============================================================
+                         STEP 7 — REFLECTION
+                    ============================================================ -->
+                    <section class="lesson-step" id="step7">
+                        <h3>🌟 Step 7: Reflection</h3>
+                        <p style="color:#cbd5e0;">Think back over the whole module before you finish.</p>
+
+                        <div class="reflection-questions">
+                            <div class="reflection-card">
+                                <h4>💡 What clicked?</h4>
+                                <p>Which part of lists or tables felt the most natural? Which part did you have to slow down for?</p>
+                                <textarea id="reflection-clicked" placeholder="Write your thoughts here…"></textarea>
+                            </div>
+                            <div class="reflection-card">
+                                <h4>🌍 Real-world use</h4>
+                                <p>Name one real website you use that would need lists and one that would need tables. Why?</p>
+                                <textarea id="reflection-realworld" placeholder="Write your thoughts here…"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="saveReflections()">💾 Save Reflections</button>
+                            <button class="btn btn-success" onclick="completeStep('step7')">✅ Complete All Steps</button>
+                        </div>
+                        <div id="step7-feedback" style="margin-top:12px;"></div>
+                    </section>
+
+                    <!-- Navigation -->
+                    <div class="next-lesson-container">
+                        <span style="color:#a0aec0; margin-right:12px;">
+                            Progress: <span id="step-progress">0/7</span> steps
+                        </span>
+                        <button class="btn btn-primary" onclick="window.location.href='/javascript'">
+                            ➡️ Go to JavaScript
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>Powered by <a href="https://makecode.com" target="_blank">Microsoft MakeCode</a></p>
+    </footer>
+</div>
+
+<script type="module" src="{{ url_for('static', path='lists.js') }}"></script>
+</body>
+</html>
