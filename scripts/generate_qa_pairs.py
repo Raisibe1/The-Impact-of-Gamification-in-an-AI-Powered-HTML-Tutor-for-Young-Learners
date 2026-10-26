@@ -1,391 +1,274 @@
 import pandas as pd
 
 def create_qa_pairs():
-    """Create 60 multiple-choice HTML question-answer pairs for Grades 7-9 (5.5/10 difficulty)"""
+    """Create 60 corrected multiple-choice HTML question-answer pairs"""
     
     qa_data = {
-        'question_id': [
-            # T001 - Introduction to HTML (7 questions)
-            'Q001', 'Q002', 'Q003', 'Q004', 'Q005', 'Q006', 'Q007',
-            # T002 - HTML Tags & Structure (7 questions)
-            'Q008', 'Q009', 'Q010', 'Q011', 'Q012', 'Q013', 'Q014',
-            # T003 - Headings & Paragraphs (6 questions)
-            'Q015', 'Q016', 'Q017', 'Q018', 'Q019', 'Q020',
-            # T004 - Hyperlinks (7 questions)
-            'Q021', 'Q022', 'Q023', 'Q024', 'Q025', 'Q026', 'Q027',
-            # T005 - Images & Multimedia (7 questions)
-            'Q028', 'Q029', 'Q030', 'Q031', 'Q032', 'Q033', 'Q034',
-            # T006 - Lists & Tables (7 questions)
-            'Q035', 'Q036', 'Q037', 'Q038', 'Q039', 'Q040', 'Q041',
-            # T007 - Forms (7 questions)
-            'Q042', 'Q043', 'Q044', 'Q045', 'Q046', 'Q047', 'Q048',
-            # T008 - Semantic HTML (6 questions)
-            'Q049', 'Q050', 'Q051', 'Q052', 'Q053', 'Q054',
-            # T009 - Mini Website Project (6 questions)
-            'Q055', 'Q056', 'Q057', 'Q058', 'Q059', 'Q060'
-        ],
+        'question_id': [f"Q{i:03d}" for i in range(1, 61)],
         'topic_id': [
-            # T001
             'T001', 'T001', 'T001', 'T001', 'T001', 'T001', 'T001',
-            # T002
             'T002', 'T002', 'T002', 'T002', 'T002', 'T002', 'T002',
-            # T003
             'T003', 'T003', 'T003', 'T003', 'T003', 'T003',
-            # T004
             'T004', 'T004', 'T004', 'T004', 'T004', 'T004', 'T004',
-            # T005
             'T005', 'T005', 'T005', 'T005', 'T005', 'T005', 'T005',
-            # T006
             'T006', 'T006', 'T006', 'T006', 'T006', 'T006', 'T006',
-            # T007
             'T007', 'T007', 'T007', 'T007', 'T007', 'T007', 'T007',
-            # T008
             'T008', 'T008', 'T008', 'T008', 'T008', 'T008',
-            # T009
             'T009', 'T009', 'T009', 'T009', 'T009', 'T009'
         ],
         'question_text': [
-            # T001 - Introduction to HTML (SIMPLIFIED)
-            'What does HTML stand for?',
-            'What is the main job of HTML?',
-            'What is the very first tag you type in a new HTML file?',
-            'What happens when you open an HTML file in a web browser?',
-            'What is an HTML tag?',
-            'Which tag holds everything you can SEE on a webpage?',
-            'What two main parts does every HTML page have?',
-            
-            # T002 - HTML Tags & Structure (SIMPLIFIED)
-            'Which tag makes a new paragraph?',
-            'How many heading sizes can you use in HTML?',
-            'Which heading is the BIGGEST on a webpage?',
-            'Which heading is the SMALLEST on a webpage?',
-            'What kind of information goes inside the <head> tag?',
-            'Which tag creates a new line without starting a new paragraph?',
-            'What is special about the <br> tag?',
-            
-            # T003 - Headings & Paragraphs (SIMPLIFIED)
-            'Which heading tag is used for the MAIN title of a page?',
-            'What does the <p> tag create on your webpage?',
-            'If you forget to close a <p> tag, what usually happens?',
-            'Which tag would you use for a section title that is smaller than <h1>?',
-            'How is <h1> different from <h2>?',
-            'Can you put a heading tag inside a paragraph tag?',
-            
-            # T004 - Hyperlinks (SIMPLIFIED)
-            'What attribute do you use to add a web address to a link?',
-            'Which HTML tag creates a clickable link?',
-            'What does "href" mean in a link?',
-            'How do you make a link open in a new browser tab?',
-            'Which is the correct way to write a link to Google?',
-            'What happens when someone clicks on a link?',
-            'Can you make an image clickable like a link?',
-            
-            # T005 - Images & Multimedia (SIMPLIFIED)
-            'Which tag adds a picture to your webpage?',
-            'What attribute tells the browser where the image is?',
-            'What does the "alt" attribute do for an image?',
-            'Why should you always add alt text to images?',
-            'What types of image files work on webpages?',
-            'What appears if your image file is missing or broken?',
-            'How can you change the size of an image on your page?',
-            
-            # T006 - Lists & Tables (SIMPLIFIED)
-            'Which tag creates a bulleted (unordered) list?',
-            'Which tag creates a numbered (ordered) list?',
-            'What is the main difference between <ul> and <ol>?',
-            'Which tag is used for each item in a list?',
-            'Which tag starts a new row in a table?',
-            'Which tag creates the heading cells in a table?',
-            'Which tag creates the data cells in a table?',
-            
-            # T007 - Forms (SIMPLIFIED)
-            'Which tag creates a box where users can type information?',
-            'What attribute gives the input field a name?',
-            'What does the "type" attribute do for an input field?',
-            'What is the main purpose of a form on a website?',
-            'Which tag creates a button that submits the form?',
-            'What is the difference between type="text" and type="password"?',
-            'How do you create a checkbox in a form?',
-            
-            # T008 - Semantic HTML (SIMPLIFIED)
-            'Why do we use semantic HTML tags?',
-            'Which tag is used for the top part of a webpage or section?',
-            'Which tag contains the navigation menu links?',
-            'Which tag holds the main content of your webpage?',
-            'Which tag is used for the bottom part of a webpage?',
-            'Why are semantic tags helpful for people using screen readers?',
-            
-            # T009 - Mini Website Project (SIMPLIFIED)
-            'What should you do FIRST when building a website?',
-            'What information usually goes in the footer of a webpage?',
-            'Why is it important to test your webpage?',
-            'Who is a "visitor" to your website?',
-            'What does "responsive design" mean for a website?',
-            'Why is it helpful to plan your webpage before coding?'
+            # T001
+            "What does HTML stand for?",
+            "What is the main job of HTML on a webpage?",
+            "What declaration should appear at the beginning of a modern HTML document?",
+            "When you open an HTML file in a web browser, what does the browser normally do?",
+            "What is an HTML tag?",
+            "Which HTML element contains the main content displayed within a webpage?",
+            "Which two main sections sit inside the <html> element in a basic HTML document?",
+            # T002
+            "Which HTML element marks a paragraph?",
+            "How many levels of HTML headings are defined, from <h1> to <h6>?",
+            "Which heading element has the highest heading rank and is usually largest in default browser styling?",
+            "Which heading element has the lowest heading rank and is usually smallest in default browser styling?",
+            "Which kind of information belongs in the <head> element of an HTML document?",
+            "Which HTML element inserts a line break without starting a new paragraph?",
+            "What is technically special about the <br> element in HTML?",
+            # T003
+            "Which heading element is commonly used for the main heading in the page content?",
+            "What does the <p> element represent on a webpage?",
+            "If an author forgets a closing </p> tag, what will usually happen in a browser?",
+            "Which heading element is one level below <h1>?",
+            "How does <h1> differ from <h2> in heading hierarchy?",
+            "Can a heading element be nested inside a paragraph element?",
+            # T004
+            "Which attribute specifies the destination of a hyperlink on an <a> element?",
+            "Which HTML element normally creates a hyperlink when it has an href attribute?",
+            "What does the href attribute specify on a hyperlink?",
+            "Which attribute value requests that a link open in a new browsing context, often a new tab or window?",
+            "Which example correctly links the text Google to the Google website?",
+            "What normally happens when someone activates a working hyperlink?",
+            "How can an image be made into a clickable hyperlink?",
+            # T005
+            "Which HTML element embeds an image in a webpage?",
+            "Which attribute identifies the image resource to load in an <img> element?",
+            "What does the alt attribute provide for an image?",
+            "Why should an informative image have meaningful alt text?",
+            "Which statement about image formats on modern webpages is correct?",
+            "What is a common sign that an image source is broken or unavailable?",
+            "Which pair of HTML attributes can specify an image's width and height?",
+            # T006
+            "Which element creates an unordered list, commonly shown with bullets by default?",
+            "Which element creates an ordered list, commonly shown with numbers by default?",
+            "What is the default distinction between <ul> and <ol>?",
+            "Which element represents an individual item inside an HTML list?",
+            "Which HTML table element represents a row?",
+            "Which HTML table element creates a header cell?",
+            "Which HTML table element creates a standard data cell?",
+            # T007
+            "Which HTML element can create a single-line text input control?",
+            "Which attribute supplies the field name included when form data is submitted?",
+            "What does the type attribute do on an <input> element?",
+            "What is the main purpose of an HTML form?",
+            "Which control below is explicitly configured to submit a form when activated?",
+            'What is the usual difference between type="text" and type="password" inputs?',
+            "How do you specify a checkbox using an input element?",
+            # T008
+            "Why use semantic HTML elements such as <nav>, <main> and <footer>?",
+            "Which semantic element commonly contains introductory content for a page or section?",
+            "Which semantic element represents a section containing major navigation links?",
+            "Which semantic element represents the dominant main content of a page?",
+            "Which semantic element commonly contains footer information for a page or section?",
+            "How can semantic HTML help people using screen readers?",
+            # T009
+            "What is a sensible first step when beginning to plan a website?",
+            "What information is commonly placed in a webpage footer?",
+            "Why should you test a webpage after building it?",
+            "Who is a visitor to a website?",
+            "What does responsive web design mean?",
+            "Why is it helpful to plan a webpage before coding?"
         ],
         'option_a': [
-            # T001 - SIMPLIFIED options
-            'HyperText Markup Language', 'To add colours to webpages', '<html>',
-            'The browser shows you the webpage', 'A special word in angle brackets like <p>',
-            '<body>', 'A head and a body',
-            
+            # T001
+            "HighText Markdown Language", "To control all colours and visual styling by itself", "<!DOCTYPE html>", "It automatically edits the source code", "A markup token written in angle brackets, such as <p> or </p>", "<body>", "A <header> section and a <footer> section",
             # T002
-            '<p>', '6', '<h1>', '<h6>', 'Information about the page (like the title)',
-            '<br>', 'It does not need a closing tag',
-            
+            "<h1>", "7 levels", "<h3>", "<h4>", "Document metadata, including the page title and links to resources", "<p>", "It is not a valid HTML element",
             # T003
-            '<h1>', 'A block of text', 'The browser still shows the text normally',
-            '<h2>', '<h1> is bigger', 'No, headings must be on their own line',
-            
+            "<h2>", "A heading", "The browser always refuses to load the whole page", "<h3>", "They always represent exactly the same heading level", "Yes, as long as the heading is <h1>",
             # T004
-            'href', '<a>', 'Hypertext Reference', 'target="_blank"',
-            '<a href="google.com">Google</a>', 'It takes them to another webpage',
-            'Yes, by putting <img> inside <a>',
-            
+            "src", "<link>", "The image file shown inside the link", 'target="_blank"', '<a src="https://www.google.com">Google</a>', "The browser navigates to the linked resource", "Place an <a> element inside the <img> element",
             # T005
-            '<img>', 'src', 'Describes the image for people who cannot see it',
-            'It helps people who use screen readers', 'Many types work (jpg, png, gif)',
-            'A broken image icon', 'Use width and height attributes',
-            
+            "<image>", "alt", "A text alternative that assistive technology can present and that may appear if the image cannot load", "It makes the image file load faster", "Only JPEG images can appear on webpages", "The browser may show a broken-image indicator and/or the alt text", "width and height",
             # T006
-            '<ul>', '<ol>', '<ul> has bullets, <ol> has numbers',
-            '<li>', '<tr>', '<th>', '<td>',
-            
+            "<list>", "<ul>", "<ul> represents an unordered list and <ol> represents an ordered list", "<point>", "<table>", "<th>", "<data>",
             # T007
-            '<input>', 'name', 'It decides what kind of input box it is',
-            'To get information from users', '<input type="submit">',
-            'text shows letters, password hides them with dots',
-            'Use type="checkbox"',
-            
+            '<input type="text">', "placeholder", "It adds a visible label automatically", "To change the webpage's colours by itself", '<input type="submit">', "Both types always encrypt the entered value in the browser", 'Set type="checkbox"',
             # T008
-            'To give more meaning to the content', '<header>', '<nav>',
-            '<main>', '<footer>', 'It helps them understand the page better',
-            
+            "They automatically make a page colourful", "<section>", "<nav>", "<content>", "<footer>", "It guarantees that the page looks modern",
             # T009
-            'Plan what you want on your webpage', 'Copyright info and links',
-            'To find and fix problems', 'Someone who looks at your webpage',
-            'It works well on computers, tablets, and phones', 'To stay organized and not forget things'
+            "Decide the page's purpose, audience and content", "Only social media links are allowed", "To guarantee that the page will never contain an error", "A person who views or uses the website", "The layout adapts to different screen sizes and devices", "It helps organise content and clarify what needs to be built"
         ],
         'option_b': [
             # T001
-            'HyperText Markup Language', 'To build the structure of a webpage', '<!DOCTYPE html>',
-            'It edits the code for you', 'A programming language', '<head>',
-            'A header and a footer',
-            
+            "HyperText Markup Language", "To run database queries and server-side code", "<body>", "It parses the HTML and renders the webpage", "A complete programming application", "<head>", "A <head> section and a <body> section",
             # T002
-            '<h1>', '6', '<h2>', '<h5>', 'The text you see on the page',
-            '<p>', 'It is empty and has no content',
-            
+            "<div>", "5 levels", "<h1>", "<h5>", "The list items displayed as part of the page content", "<hr>", "It is a void element and does not have a separate closing tag",
             # T003
-            '<h6>', 'A heading', 'The page will show an error',
-            '<h3>', '<h1> is smaller', 'Yes, you can put them anywhere',
-            
+            "<h1>", "A paragraph of text", "The browser often still displays the text, but the document structure may not be as intended", "<h2>", "<h1> has a lower heading rank than <h2>", "Yes, if the paragraph has a class attribute",
             # T004
-            'src', '<link>', 'Hypertext Help', 'new_window',
-            '<a src="google.com">Google</a>', 'It checks for spelling mistakes',
-            'No, only text can be links',
-            
+            "link", "<hyperlink>", "The text colour of the link", "new_window", '<a href="https://www.google.com">Google</a>', "The browser checks all spelling in the page", 'Place the <img> element inside an <a href="..."> element',
             # T005
-            '<image>', 'alt', 'It makes the image bigger', 'It makes the page load faster',
-            'Only jpg files', 'The page will not load', 'Use the size attribute',
-            
+            "<img>", "href", "A command that makes the image larger", "It changes the image colour", "Common formats such as JPEG, PNG, GIF and WebP can be used, subject to browser support", "The browser automatically repairs the missing image file", "size and image-size",
             # T006
-            '<ol>', '<ul>', 'Both use bullet points', '<list>', '<row>', '<tr>', '<data>',
-            
+            "<ul>", "<ol>", "Both elements always create bulleted lists", "<list>", "<row>", "<thead>", "<td>",
             # T007
-            '<form>', 'id', 'It makes the input bigger', 'To change the page colour',
-            '<submit>', 'text is for passwords, password is for text',
-            'Use type="check"',
-            
+            "<form>", "id", "It determines the font size of the input", "To collect user input and submit it for processing", "<submit>", "Text displays typed characters; password visually masks them", 'Set type="check"',
             # T008
-            'To make pages load faster', '<section>', '<menu>',
-            '<content>', '<bottom>', 'It makes the text bigger',
-            
+            "They automatically make every page load faster", "<footer>", "<navigation>", "<section>", "<bottom>", "It automatically makes all text larger",
             # T009
-            'Start typing code right away', 'Only social media links',
-            'To make the page look pretty', 'Someone who builds websites',
-            'It only works on desktop computers', 'To make coding more complicated'
+            "Choose random images before planning the content", "Copyright information, contact details or related links", "To find problems with links, layout, content or functionality", "A person who maintains the website's server as their job", "The layout stays fixed even when it no longer fits the screen", "Planning guarantees that testing will never find errors"
         ],
         'option_c': [
             # T001
-            'HyperText Markup Language', 'To create animations', '<body>',
-            'It saves the file automatically', 'A type of software', '<footer>',
-            'A title and a footer',
-            
+            "Hyperlink and Text Markup Language", "To define the structure and meaning of webpage content", "<html>", "It automatically saves the file to your computer", "A type of web browser", "<meta>", "A <title> section and a <nav> section",
             # T002
-            '<div>', '4', '<h3>', '<h4>', 'The page title and settings',
-            '<hr>', 'It has no opening tag',
-            
+            "<p>", "6 levels", "<h2>", "<h6>", "The main paragraphs and images displayed in the page body", "<br>", "It always requires a separate </br> closing tag",
             # T003
-            '<h2>', 'A new line', 'The browser will not show anything',
-            '<p>', 'They are exactly the same', 'Only in special cases',
-            
+            "<h6>", "A line break only", "The browser always repairs every possible markup problem perfectly", "<p>", "<h1> has a higher heading rank than <h2>", "No. A paragraph element cannot contain a heading element",
             # T004
-            'link', '<hyperlink>', 'Hypertext Link', 'open_new',
-            '<a href="google.com">Google</a>', 'It adds a picture to the page',
-            'Yes, by putting <a> inside <img>',
-            
+            "href", "<a>", "The destination URL or resource for the link", "open_new", "<a>Google</a>", "The browser automatically inserts an image", "Images can never be placed inside hyperlinks",
             # T005
-            '<picture>', 'href', 'It creates a caption under the image',
-            'It changes the image colour', 'Only gif files',
-            'A broken image icon', 'Use the image-size attribute',
-            
+            "<picture>", "src", "A visible caption automatically displayed underneath the image", "It helps people using screen readers access the image's information", "Only GIF images can appear on webpages", "The browser closes the entire webpage", "length and breadth",
             # T006
-            '<list>', '<item>', '<ul> has numbers, <ol> has bullets',
-            '<point>', '<table>', '<thead>', '<tc>',
-            
+            "<ol>", "<item>", "<ul> is ordered and <ol> is unordered", "<li>", "<tr>", "<tr>", "<tc>",
             # T007
-            '<text>', 'placeholder', 'It adds a label to the input',
-            'To create animations', '<button type="submit">',
-            'text is for passwords, password is for text',
-            'Use type="box"',
-            
+            "<textarea>", "name", "It specifies the kind of input control, such as text, password or checkbox", "To create animations by itself", '<button type="button">Submit</button>', "Text fields always mask characters; password fields show them openly", 'Set type="tickbox"',
             # T008
-            'To make pages more colourful', '<header>', '<navigation>',
-            '<section>', '<lower>', 'It makes pages look more modern',
-            
+            "They communicate the role and structure of different page regions", "<header>", "<footer>", "<main>", "<lower>", "It exposes meaningful structure and landmarks that assistive technology can identify",
             # T009
-            'Find pictures for the page', 'The page title',
-            'To make it more interesting', 'Someone who clicks on links',
-            'It only works on mobile phones', 'To make sure you have enough time'
+            "Start typing HTML before deciding what the page is for", "Only the page title and nothing else", "To make the webpage colourful without changing its code", "A person who necessarily wrote the website's HTML", "The website only works on desktop computers", "Planning is unnecessary for every small webpage"
         ],
         'correct_answer': [
-            # T001 - All A is correct
-            'A', 'B', 'B', 'A', 'A', 'A', 'A',
+            # T001
+            'B', 'C', 'A', 'B', 'A', 'A', 'B',
             # T002
-            'A', 'A', 'A', 'A', 'A', 'A', 'A',
+            'C', 'C', 'B', 'C', 'A', 'C', 'B',
             # T003
-            'A', 'A', 'A', 'A', 'A', 'A',
+            'B', 'B', 'B', 'B', 'C', 'C',
             # T004
-            'A', 'A', 'A', 'A', 'A', 'A', 'A',
+            'C', 'C', 'C', 'A', 'B', 'A', 'B',
             # T005
-            'A', 'A', 'A', 'B', 'A', 'A', 'A',
+            'B', 'C', 'A', 'C', 'B', 'A', 'A',
             # T006
-            'A', 'B', 'A', 'A', 'A', 'A', 'A',
+            'B', 'B', 'A', 'C', 'C', 'A', 'B',
             # T007
-            'A', 'A', 'A', 'A', 'A', 'A', 'A',
+            'A', 'C', 'C', 'B', 'A', 'B', 'A',
             # T008
-            'A', 'A', 'A', 'A', 'A', 'A',
+            'C', 'C', 'A', 'C', 'A', 'C',
             # T009
-            'A', 'A', 'A', 'A', 'A', 'A'
+            'A', 'B', 'B', 'A', 'A', 'A'
         ],
         'hint_text': [
-            # T001 - Clearer hints
-            'Think about the three words that make up HTML',
-            'What does HTML do for a webpage?',
-            'This goes at the very top of the file',
-            'What does the browser do with the code?',
-            'Look at the symbols used - what goes inside them?',
-            'What part of the page can you actually see?',
-            'Think about the two sections every HTML page has',
-            
-            # T002 - Simpler hints
-            'This tag is one letter and starts with p',
-            'Count from h1 to h6',
-            'Which number gives the biggest heading?',
-            'Which number gives the smallest heading?',
-            'This is stuff the user doesn\'t see',
-            'This tag starts with br and is short for "break"',
-            'Does it have a closing tag?',
-            
+            # T001
+            "Think about the four letters H, T, M and L.",
+            "Think about the page structure rather than its colours or animations.",
+            "Look for the declaration that identifies the document type.",
+            "Think about how the browser turns markup into a displayed page.",
+            "Look at the angle brackets around markup names.",
+            "Think of the element for page content, rather than document metadata.",
+            "Think about document information versus displayed page content.",
+            # T002
+            "The element name begins with the letter p.",
+            "Count the heading elements from h1 through h6.",
+            "The heading ranks run from h1 down to h6.",
+            "The highest heading rank is h1; follow the sequence down to its end.",
+            "Think about document information and resources, not the main visible content.",
+            "Its name is short for a line break.",
+            "Check whether this element has content that needs an end tag.",
             # T003
-            'Which heading is the most important?',
-            'What does the p stand for?',
-            'Browsers are forgiving with small mistakes',
-            'Which heading is one level below h1?',
-            'Think about the size difference',
-            'Headings are block elements - they take their own line',
-            
+            "Choose the highest-level heading for the page's main heading.",
+            "The p in the element name stands for paragraph.",
+            "Browsers often recover from some markup mistakes, but that does not make the code correct.",
+            "Move one step down from h1 in the heading sequence.",
+            "The heading number indicates the rank in the hierarchy.",
+            "Think about which kinds of content are allowed inside a paragraph.",
             # T004
-            'This attribute starts with h',
-            'This tag is a single letter',
-            'The "ref" part means "reference"',
-            'Look for the attribute that starts with "target"',
-            'You need the href attribute in the opening tag',
-            'What happens to the user when they click?',
-            'You can wrap an image with a link tag',
-            
+            "This attribute name begins with h and points to the linked resource.",
+            "It is a one-letter element name.",
+            "Think about where the browser should go when the link is activated.",
+            "Look for the target attribute and its special underscore-prefixed value.",
+            "A hyperlink uses href to specify its destination.",
+            "Think about what a link is designed to navigate to.",
+            "The link element can wrap the content that should be clickable.",
             # T005
-            'This tag is short for "image"',
-            'This stands for "source"',
-            'The "alt" is like a description',
-            'Think about people who can\'t see the image',
-            'Most common image formats work',
-            'What does the browser show as a placeholder?',
-            'You can use attributes for width and height',
-            
+            "The element name is a short form of image.",
+            "This attribute is short for source.",
+            "Think about text that can communicate the image's purpose when the image cannot be seen.",
+            "Think about accessibility for people who cannot see the image.",
+            "Modern browsers support several common image formats.",
+            "Think about what the browser can display when it cannot retrieve an image.",
+            "Use the attribute names that correspond directly to the dimensions.",
             # T006
-            'UL stands for "unordered list"',
-            'OL stands for "ordered list"',
-            'Think about bullets vs numbers',
-            'LI stands for "list item"',
-            'TR stands for "table row"',
-            'TH stands for "table header"',
-            'TD stands for "table data"',
-            
+            "UL stands for unordered list.",
+            "OL stands for ordered list.",
+            "Look at what UL and OL stand for.",
+            "Its name stands for list item.",
+            "TR stands for table row.",
+            "TH stands for table header cell.",
+            "TD stands for table data cell.",
             # T007
-            'This tag collects user information',
-            'This is how you identify the field',
-            'Different types show different input boxes',
-            'Forms send information somewhere',
-            'This tag creates the clickable button',
-            'Think about what each one shows on screen',
-            'This is a common input type for choices',
-            
+            "Input controls use the input element; textarea is for multi-line text.",
+            "The submitted form-data key is supplied by this attribute.",
+            "Different type values create different input controls.",
+            "Forms are used to collect information from users.",
+            'A submit control has a specific type; a button with type="button" does not submit by default.',
+            "Password inputs mask characters on screen; visual masking is not the same as encryption.",
+            "The type value is the standard HTML name for the control.",
             # T008
-            'It\'s about meaning, not just appearance',
-            'This goes at the top of a section',
-            'This has navigation links',
-            'This has the main content',
-            'This goes at the bottom',
-            'Screen readers read pages aloud',
-            
+            "Semantic elements add meaning to the structure of the page.",
+            "It commonly contains introductory content or navigation for a page or section.",
+            "The element name is a short form of navigation.",
+            "Choose the element specifically named for the page's main content.",
+            "Its name describes the end or footer area of a page or section.",
+            "Think about how assistive technology identifies sections and their roles.",
             # T009
-            'Think about what you need before starting',
-            'This goes at the very bottom',
-            'Testing helps catch errors',
-            'This is the person using your site',
-            'Think about different devices people use',
-            'A plan helps you work better'
+            "Plan what the site should do and who it is for before coding.",
+            "Footers often contain supporting information about the site or page.",
+            "Testing helps find issues that need fixing.",
+            "A visitor is someone who uses or views a website.",
+            "Think about making content usable on phones, tablets and computers.",
+            "A plan helps organise ideas and identify requirements before implementation."
         ],
         'difficulty': [
-            # T001 - ALL LEVEL 1 (easier)
+            # T001
             1, 1, 1, 1, 1, 1, 1,
-            # T002 - ALL LEVEL 1
+            # T002
             1, 1, 1, 1, 1, 1, 1,
-            # T003 - ALL LEVEL 1
+            # T003
             1, 1, 1, 1, 1, 1,
-            # T004 - MOSTLY LEVEL 1, one Level 2
+            # T004
             1, 1, 1, 1, 1, 1, 2,
-            # T005 - MOSTLY LEVEL 1
+            # T005
             1, 1, 1, 2, 1, 1, 2,
-            # T006 - ALL LEVEL 1
+            # T006
             1, 1, 1, 1, 1, 1, 1,
-            # T007 - MOSTLY LEVEL 1
+            # T007
             1, 1, 1, 1, 1, 1, 2,
-            # T008 - MIX OF 1 and 2
+            # T008
             2, 1, 1, 1, 1, 2,
-            # T009 - MOSTLY LEVEL 1
+            # T009
             1, 1, 2, 1, 2, 1
         ]
     }
     
     df = pd.DataFrame(qa_data)
-    
-    # Reorder columns for better readability
     df = df[['question_id', 'topic_id', 'question_text', 'option_a', 'option_b', 'option_c', 'correct_answer', 'hint_text', 'difficulty']]
-    
     return df
 
 if __name__ == "__main__":
     df = create_qa_pairs()
     output_path = 'data/reference/qa_pairs.csv'
     df.to_csv(output_path, index=False)
-    print(f"✅ Created {len(df)} multiple-choice QA pairs")
-    print(f"📁 Saved to: {output_path}")
-    print(f"\n📊 Topics covered:")
-    print(df['topic_id'].value_counts().sort_index())
-    print(f"\n📊 Difficulty breakdown:")
-    print(df['difficulty'].value_counts().sort_index())
-    print(f"\n🔍 First 5 questions:")
-    print(df[['question_id', 'topic_id', 'question_text', 'correct_answer']].head())
+    print(f" Created {len(df)} CORRECTED multiple-choice QA pairs")
+    print(f" Saved to: {output_path}")
+    print(f"\n Answer Distribution:")
+    print(df['correct_answer'].value_counts())
