@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CodeVerse | Admin Analytics</title>
+
+	<style>
+		*{ box-sizing:border-box; }
+
+		body{
+			margin:0;
+			font-family: Arial, sans-serif;
+			background: #f2f5fa;
+			color: #172033;
+		}
+
+		header{
+			background: #142b50;
+			color:white;
+			padding: 25px 6%;
+		}
+
+		header h1{ margin:0 0 8px }
+
+		main{
+			max-width: 1300px;
+			margin: 35px auto;
+			padding: 0 20px;
+		}
+
+		.dashboard-grid{
+			display:grid;
+			grid-template-columns: repeat(2,minmax(0,1fr));
+			gap: 24px;
+		}
+
+		.card{
+			background: white;
+			border-radius: 14px;
+			padding: 22px;
+			box-shadow: 0 4px 14px rgba(0, 0, 0,.06);
+		}
+
+		.card h2{
+			font-size: 19px;
+			margin-top: 0;
+		}
+
+		.card p{
+			color: #64748b;
+			line-height:1.5;
+		}
+
+		.card img{
+			display: block;
+			width: 100%;
+			height: auto;
+			object-fit: contain;
+			margin-top: 16px;
+		}
+
+		@media (max-width: 800px){
+			.dashboard-grid{
+				grid-template-columns: 1fr;
+			}
+		}
+
+	</style>
+
+</head>
+<body>
+	<header>
+		<h1>CodeVerse Analytics Dashboard</h1>
+		<p>Machine Learning Performance & Reporting</p>
+	</header>
+
+	<main>
+		<section class="dashboard-grid">
+			<article class="card">
+				<h2>Class Distribution</h2>
+				<p>Distribution of correct and incorrect learner interactions in the dataset.</p>
+				<img src="/api/admin/graphs/class_distribution.png" alt="Class Distribution">
+			</article>
+
+			<article class="card">
+				<h2>Confusion Matrices</h2>
+				<p>Comparison of baseline and tuned model classification results.</p>
+				<img src="/api/admin/graphs/confusion_matrices.png" alt="Confusion Matrix">
+			</article>
+
+			<article class="card">
+				<h2>ROC Curve Comparison</h2>
+				<p>Visual comparison of model classification performance.</p>
+				<img src="/api/admin/graphs/roc_curves.png" alt="ROC Curves">
+			</article>
+
+			<article class="card">
+				<h2>Model Performance Metrics</h2>
+				<p>Baseline versus tuned logistic regression model performance.</p>
+				<img src="/api/admin/graphs/model_comparisons.png" alt="Model Comparison">
+			</article>
+		</section>
+	</main>
+
+</body>
+</html>
