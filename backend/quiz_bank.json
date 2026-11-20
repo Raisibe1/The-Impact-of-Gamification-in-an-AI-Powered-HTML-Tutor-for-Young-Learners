@@ -1,0 +1,922 @@
+{
+  "T001": [
+    {
+      "question": "What does HTML stand for?",
+      "options": [
+        "HyperText Markup Language",
+        "HighText Machine Language",
+        "Home Tools Markup Language"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does a web browser do?",
+      "options": [
+        "Stores every website",
+        "Requests and displays webpages",
+        "Compiles SQL databases"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which technology controls most website styling?",
+      "options": [
+        "CSS",
+        "HTML",
+        "SQLite"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the internet?",
+      "options": [
+        "A single website",
+        "A global network connecting devices",
+        "A programming language"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a webpage?",
+      "options": [
+        "An individual document on a website",
+        "A computer program",
+        "A type of browser"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which of these is an example of a web browser?",
+      "options": [
+        "Google Chrome",
+        "HTML",
+        "CSS"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does CSS stand for?",
+      "options": [
+        "Computer Style System",
+        "Cascading Style Sheets",
+        "Creative Software Structure"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which technology adds behaviour and interactivity to webpages?",
+      "options": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What is a website?",
+      "options": [
+        "A collection of related webpages",
+        "A single HTML tag",
+        "A computer operating system"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is a server responsible for in a basic website request?",
+      "options": [
+        "Designing the webpage",
+        "Sending requested website files",
+        "Choosing the user's browser"
+      ],
+      "correct": 1
+    }
+  ],
+  "T002": [
+    {
+      "question": "Which HTML element contains visible page content?",
+      "options": [
+        "head",
+        "body",
+        "title"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a correct paragraph?",
+      "options": [
+        "<p>Hello</p>",
+        "<paragraph>Hello</paragraph>",
+        "<p>Hello<p>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Where does page metadata usually belong?",
+      "options": [
+        "footer",
+        "body",
+        "head"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Which declaration identifies an HTML5 document?",
+      "options": [
+        "<html5>",
+        "<!DOCTYPE html>",
+        "<document>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element contains the webpage title shown in the browser tab?",
+      "options": [
+        "<title>",
+        "<body>",
+        "<h1>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which attribute specifies the language of an HTML document?",
+      "options": [
+        "src",
+        "lang",
+        "href"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is an HTML element usually made up of?",
+      "options": [
+        "An opening tag, content and a closing tag",
+        "Only a CSS rule",
+        "A database and a server"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element is a void element and does not need a closing tag?",
+      "options": [
+        "<p>",
+        "<h1>",
+        "<img>"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What does nesting mean in HTML?",
+      "options": [
+        "Placing one element inside another",
+        "Deleting HTML elements",
+        "Changing the browser language"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element contains information about the HTML document?",
+      "options": [
+        "<head>",
+        "<footer>",
+        "<main>"
+      ],
+      "correct": 0
+    }
+  ],
+  "T003": [
+    {
+      "question": "What tag marks a top-level heading?",
+      "options": [
+        "<h6>",
+        "<h1>",
+        "<p>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What element creates a paragraph?",
+      "options": [
+        "<p>",
+        "<text>",
+        "<br>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element makes a line break?",
+      "options": [
+        "<hr>",
+        "<line>",
+        "<br>"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Which heading is the smallest in HTML?",
+      "options": [
+        "<h1>",
+        "<h6>",
+        "<h3>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element creates a horizontal thematic break?",
+      "options": [
+        "<br>",
+        "<hr>",
+        "<line>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element gives text strong importance?",
+      "options": [
+        "<strong>",
+        "<small>",
+        "<mark>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element is commonly used to emphasise text?",
+      "options": [
+        "<em>",
+        "<hr>",
+        "<body>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element highlights text?",
+      "options": [
+        "<mark>",
+        "<head>",
+        "<table>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Why should headings follow a logical order?",
+      "options": [
+        "To improve content structure and navigation",
+        "To make images load faster",
+        "To change the webpage URL"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element displays smaller side comments or fine print?",
+      "options": [
+        "<small>",
+        "<h1>",
+        "<strong>"
+      ],
+      "correct": 0
+    }
+  ],
+  "T004": [
+    {
+      "question": "Which element creates a hyperlink?",
+      "options": [
+        "<a>",
+        "<linkto>",
+        "<href>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which attribute gives a link destination?",
+      "options": [
+        "src",
+        "href",
+        "alt"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which points to a section with id='contact'?",
+      "options": [
+        "href='contact'",
+        "href='.contact'",
+        "href='#contact'"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What does an absolute URL contain?",
+      "options": [
+        "The full web address",
+        "Only an element ID",
+        "Only a filename"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does a relative URL usually refer to?",
+      "options": [
+        "A location relative to the current page or site",
+        "A complete internet address only",
+        "An email address"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which attribute opens a link in a new browsing tab or window?",
+      "options": [
+        "target='_blank'",
+        "href='_new'",
+        "src='_blank'"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which attribute can help protect a page when using target='_blank'?",
+      "options": [
+        "rel='noopener noreferrer'",
+        "alt='safe'",
+        "id='blank'"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which URL scheme is used to create a telephone link?",
+      "options": [
+        "mailto:",
+        "tel:",
+        "http:"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which URL scheme is used for an email link?",
+      "options": [
+        "mailto:",
+        "email:",
+        "send:"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which link text is most descriptive?",
+      "options": [
+        "Click here",
+        "More",
+        "Read the HTML learning guide"
+      ],
+      "correct": 2
+    }
+  ],
+  "T005": [
+    {
+      "question": "Which element displays an image?",
+      "options": [
+        "<img>",
+        "<image>",
+        "<photo>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does alt text provide?",
+      "options": [
+        "File size",
+        "Text alternative to an image",
+        "Image animation"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element embeds video?",
+      "options": [
+        "<movie>",
+        "<video>",
+        "<clip>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which attribute specifies the image file location?",
+      "options": [
+        "href",
+        "src",
+        "alt"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Why is the alt attribute important?",
+      "options": [
+        "It supports accessibility",
+        "It changes the image colour",
+        "It creates a hyperlink"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element can provide a caption for an image?",
+      "options": [
+        "<figcaption>",
+        "<footer>",
+        "<label>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element groups an image and its caption?",
+      "options": [
+        "<figure>",
+        "<section>",
+        "<aside>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does loading='lazy' help with?",
+      "options": [
+        "Delaying off-screen image loading",
+        "Making images larger",
+        "Changing image formats"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which image format is commonly used for scalable vector graphics?",
+      "options": [
+        "JPEG",
+        "SVG",
+        "MP3"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which CSS rule helps an image fit within its container?",
+      "options": [
+        "max-width: 100%; height: auto;",
+        "font-size: 100%;",
+        "display: text;"
+      ],
+      "correct": 0
+    }
+  ],
+  "T006": [
+    {
+      "question": "Which URL scheme starts an email link?",
+      "options": [
+        "email:",
+        "mailto:",
+        "message:"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What does #about refer to?",
+      "options": [
+        "CSS class",
+        "Element with id='about'",
+        "Image file"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which link text is clearest?",
+      "options": [
+        "Click here",
+        "Here",
+        "View HTML resources"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Which attribute identifies the destination of a hyperlink?",
+      "options": [
+        "href",
+        "src",
+        "width"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is an internal page link?",
+      "options": [
+        "A link to another section or page within the same website",
+        "A link to a different country",
+        "A link to a computer folder only"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which attribute creates a destination for a same-page link?",
+      "options": [
+        "id",
+        "src",
+        "alt"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which link can download a file?",
+      "options": [
+        "<a href='file.pdf' download>Download</a>",
+        "<p download='file.pdf'>",
+        "<img href='file.pdf'>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the purpose of a navigation menu?",
+      "options": [
+        "To help users move between pages or sections",
+        "To store images",
+        "To create database tables"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is a broken link?",
+      "options": [
+        "A link that does not lead to its intended destination",
+        "A link with descriptive text",
+        "A link to a heading"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which is an example of a same-page link?",
+      "options": [
+        "<a href='#about'>About</a>",
+        "<a src='about'>About</a>",
+        "<p href='#about'>About</p>"
+      ],
+      "correct": 0
+    }
+  ],
+  "T007": [
+    {
+      "question": "How can an image become a clickable link?",
+      "options": [
+        "Put img inside a",
+        "Put a inside alt",
+        "Use src inside href without a"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What element provides a figure caption?",
+      "options": [
+        "<caption>",
+        "<figcaption>",
+        "<description>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is appropriate for a purely decorative image?",
+      "options": [
+        "Omit alt entirely",
+        "alt='decorative image'",
+        "alt=''"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Which attribute specifies the image's height?",
+      "options": [
+        "height",
+        "size",
+        "length"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the purpose of the width attribute?",
+      "options": [
+        "To specify image width",
+        "To add alternative text",
+        "To create a link"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does srcset help a browser do?",
+      "options": [
+        "Choose a suitable image source for different screen conditions",
+        "Create an image caption",
+        "Add a password field"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which format is often suitable for photographs?",
+      "options": [
+        "JPEG",
+        "HTML",
+        "TXT"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which format supports transparency and is commonly used for graphics?",
+      "options": [
+        "PNG",
+        "MP3",
+        "CSV"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "How do you write an HTML comment?",
+      "options": [
+        "<!-- comment -->",
+        "// comment",
+        "* comment *"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Why should images keep their original aspect ratio?",
+      "options": [
+        "To avoid stretching or distortion",
+        "To make links work",
+        "To remove the alt attribute"
+      ],
+      "correct": 0
+    }
+  ],
+  "T008": [
+    {
+      "question": "Which creates an unordered list?",
+      "options": [
+        "<ul>",
+        "<ol>",
+        "<dl>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element creates a table row?",
+      "options": [
+        "<td>",
+        "<tr>",
+        "<th>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element marks a table header cell?",
+      "options": [
+        "<thead>",
+        "<th>",
+        "<header>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element creates an ordered list?",
+      "options": [
+        "<ul>",
+        "<ol>",
+        "<li>"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element represents an individual list item?",
+      "options": [
+        "<li>",
+        "<item>",
+        "<list>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element creates a standard table data cell?",
+      "options": [
+        "<td>",
+        "<tr>",
+        "<th>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element adds a title or description to a table?",
+      "options": [
+        "<caption>",
+        "<title>",
+        "<label>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does <thead> contain?",
+      "options": [
+        "The table's header rows",
+        "The table's images",
+        "The webpage footer"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which elements are used for a description list?",
+      "options": [
+        "<dl>, <dt> and <dd>",
+        "<ul>, <li> and <tr>",
+        "<table>, <img> and <p>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does the scope='col' attribute indicate on a table header?",
+      "options": [
+        "The header applies to a column",
+        "The header applies to an image",
+        "The header creates a new row"
+      ],
+      "correct": 0
+    }
+  ],
+  "T009": [
+    {
+      "question": "What element contains form controls?",
+      "options": [
+        "<form>",
+        "<inputgroup>",
+        "<fieldsetonly>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which input type is best for email?",
+      "options": [
+        "textonly",
+        "email",
+        "url"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What links a label to an input?",
+      "options": [
+        "label for matching input id",
+        "label src matching input name",
+        "label class matching input type"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element creates a multi-line text input?",
+      "options": [
+        "<textarea>",
+        "<paragraph>",
+        "<multitext>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element creates a dropdown list?",
+      "options": [
+        "<select>",
+        "<dropdown>",
+        "<optionlist>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element defines an option inside a dropdown?",
+      "options": [
+        "<option>",
+        "<choice>",
+        "<input>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which input type allows a user to enter a password?",
+      "options": [
+        "password",
+        "hidden-text",
+        "secret"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which input type allows users to select a checkbox?",
+      "options": [
+        "checkbox",
+        "tickbox-text",
+        "select"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the purpose of the required attribute?",
+      "options": [
+        "It makes a field compulsory before submission",
+        "It hides a field",
+        "It changes the field colour"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element groups related form controls?",
+      "options": [
+        "<fieldset>",
+        "<section>",
+        "<grouptext>"
+      ],
+      "correct": 0
+    }
+  ],
+  "T010": [
+    {
+      "question": "Which element usually contains a page's primary content?",
+      "options": [
+        "<main>",
+        "<div>",
+        "<aside>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Why use semantic HTML?",
+      "options": [
+        "To store passwords",
+        "To communicate structure and meaning",
+        "To run database commands"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which practice supports accessibility?",
+      "options": [
+        "Remove headings",
+        "Use meaningful image alt text",
+        "Use only mouse controls"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Which element represents introductory content or a group of navigation links?",
+      "options": [
+        "<header>",
+        "<footer>",
+        "<td>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element represents navigation links?",
+      "options": [
+        "<nav>",
+        "<aside>",
+        "<mark>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element represents the footer of a page or section?",
+      "options": [
+        "<footer>",
+        "<main>",
+        "<form>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the purpose of the <article> element?",
+      "options": [
+        "To represent self-contained content",
+        "To create an image",
+        "To create a password field"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which element represents content related to the main content but separate from it?",
+      "options": [
+        "<aside>",
+        "<strong>",
+        "<input>"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Why should webpages use a logical heading structure?",
+      "options": [
+        "It helps users and assistive technologies understand the content",
+        "It makes the website load without a server",
+        "It replaces all CSS"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which is an example of accessible form design?",
+      "options": [
+        "Using labels connected to form inputs",
+        "Removing all labels",
+        "Using colour as the only instruction"
+      ],
+      "correct": 0
+    }
+  ]
+}
